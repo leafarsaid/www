@@ -1,0 +1,278 @@
+@charset "utf-8";
+
+body {
+
+	font-family: Arial Narrow;
+
+	font-size: 14px;
+
+	color: #FFCC00;
+
+	background-color:#666666;
+
+}
+
+
+
+.separador {
+
+	background-color:#666666;
+
+}
+
+
+
+.tb1 {
+
+	border-collapse:collapse;
+
+	border:thin solid #333333;
+
+	width: 100%;
+
+}
+
+
+
+.td1 {
+
+	font-size: 12px;
+
+	font-weight: bold;
+
+	background-color: #cc9900;
+
+	color: #000000;
+
+}
+
+.cells {
+
+	border-collapse:collapse;
+
+	border:1px solid #333333;
+
+	vertical-align: text-top;
+
+}
+
+
+
+.tb2 {
+
+	text-align: left;
+
+	height: 47px;
+
+}
+
+.tr1 {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	background-color: #000000;
+	vertical-align: text-top;
+	cursor: pointer;
+}
+
+.tr1_alt {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	background-color: #1c1c1c;
+	vertical-align: text-top;
+}
+
+.tr3 {
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	background-color: #000000;
+	vertical-align: text-top;
+	cursor: pointer;
+	border-bottom:double thin #F90;
+}
+
+
+.tr2 {
+	color:#666666;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	background-color: #000000;
+	vertical-align: text-top;
+	cursor: pointer;
+}
+
+.tr2_alt {
+	color:#666666;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: left;
+	background-color: #1c1c1c;
+	vertical-align: text-top;
+}
+
+.tr_pen {
+
+	color:#666666;
+
+	font-size: 12px;
+
+	font-weight: normal;
+
+	text-align: left;
+
+	background-color: #661c1c;
+
+	vertical-align: text-top;
+
+}
+
+.tr3 {
+
+	color:#666666;
+
+	font-size: 12px;
+
+	font-weight: normal;
+
+	text-align: left;
+
+	background-color: #333333;
+
+	vertical-align: text-top;
+
+	cursor: pointer;
+
+}
+
+.trip {
+
+	width: 170px;
+
+}
+
+
+
+.head_div {
+
+	z-index: auto;
+
+	position:relative;
+
+}
+
+.titulo {
+
+	z-index: auto;
+
+	position:absolute;
+
+	width: 600px;
+
+	top: 4px;
+
+	left: 130px;
+
+}
+
+.titulo2 {
+
+	z-index: auto;
+
+	position:absolute;
+
+	width: 450px;
+
+	top: 4px;
+
+	left: 430px;
+
+	text-align: right;
+
+}
+
+
+
+
+
+.bg_logo{
+
+	background-image: url(../imagens/irc_ppal.png);
+
+	background-repeat: no-repeat;
+
+	background-position: right top;	
+
+}
+
+
+
+.bg_logo2{
+
+	background-repeat: no-repeat;
+
+	background-position: right top;	
+
+}
+
+
+
+.bg_logo3{
+
+	background-image: url(../imagens/codasur.jpg);
+
+	background-repeat: no-repeat;
+
+	background-position: right top;	
+
+}
+
+
+
+.style1 {
+
+	color: #000000;
+
+	font-weight: bold;
+
+	font-size: 9px;
+
+}
+
+.style2 {
+
+	color: #CCCCCC;
+
+	font-size: 9px;
+
+	text-decoration: none;
+
+}
+
+.style2:hover {
+
+	color: #CCCCCC;
+
+	font-size: 9px;
+
+	text-decoration: underline;
+
+}
+
+
+
+.bg_legendas {
+
+	background-color:#cc9900;
+
+}
+
+
+
+.bg_header {
+
+	background-color:#000000;
+
+}
