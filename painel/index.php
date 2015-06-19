@@ -61,6 +61,7 @@ if ($_SESSION['nivel']==0){
 	</style-->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/dashboard.css" rel="stylesheet">
+	<link href="css/bootstrap-datepicker.css" rel="stylesheet">
 </head>
 
 <body>
@@ -124,6 +125,8 @@ if ($_SESSION['nivel']==0){
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
     <script language="javascript">
 	function enviaComando(cmd,id) {
 		//if (cmd != "atualizar") {

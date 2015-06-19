@@ -135,6 +135,7 @@ if (isset($_POST["cmd"]))
 	}
 }
 ?>
+<div class="container">
 <h1>Trechos</h1>
 <form name="comando" method="post">
 <?
@@ -155,64 +156,80 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 <a href="#" onclick="enviaComando('add_trecho', <?= $vet_linha["c02_codigo"] ?>)"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Trecho</button></a>
  
 <div class="form-group"> 
-Trecho<br />
-<select name="trecho[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
+<div class="col-lg-4 campos">
+<label for="trecho">Trecho</label>
+<select id="trecho" name="trecho[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
 	<option value="1">Trecho 1</option>
 </select>
 </div>	
 
-<div class="form-group"> 
-Status<br />
-<select name="status[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
+<div class="col-lg-4 campos"> 
+<label for="status">Status</label>
+<select id="status" name="status[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
 	<option value="NI" <?= ($vet_linha["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
 	<option value="I" <?= ($vet_linha["c02_status"] == "I") ? "selected" : "" ?>>Iniciado</option>
 	<option value="F" <?= ($vet_linha["c02_status"] == "F") ? "selected" : "" ?>>Finalizado</option>
 </select>
 </div>
 	
-<div class="form-group"> 	
-Nome<br />
-<input type="text" class="form-control" name="nome[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_nome"] ?>" />
+<div class="col-lg-4 campos "> 	
+<label for="nome">Nome</label>
+<input type="text" class="form-control" id="nome" name="nome[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_nome"] ?>" />
 </div>
     
-<div class="form-group"> 
-Data<br />
-<input type="text" class="form-control" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_data"] ?>" />
+<div class='col-sm-4'>
+            <div class="form-group">
+            	<label for="dat1">Data</label>
+                <div class='input-group date' id='datetimepicker3'>     
+                	<input type="text" class="form-control" />           	
+                    <!-- input type="text" class="form-control" id="dat" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_data"] ?>" /-->
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+</div>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+            });
+</script>
+
+<div class="col-lg-4 campos"> 
+<label for="orig">Origem</label>
+<input type="text" class="form-control" id="orig" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" />
 </div>
 
-<div class="form-group"> 
-Origem<br />
-<input type="text" class="form-control" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" />
+<div class="col-lg-4 campos"> 
+<label for="dest">Destino</label>
+<input type="text" class="form-control" id="dest" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" />
 </div>
 
-<div class="form-group"> 
-Destino<br />
-<input type="text" class="form-control" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" />
+<div class="col-lg-4 campos"> 
+<label for="dist">Dist&acirc;ncia</label>
+<input type="text" class="form-control" id="dist" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" />
 </div>
 
-<div class="form-group"> 
-Dist&acirc;ncia<br />
-<input type="text" class="form-control" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" />
+<div class="col-lg-4 campos"> 
+<label for="tempoch">Tempo CH</label>
+<input type="text" class="form-control" id="tempoch" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
-<div class="form-group"> 
-Tempo CH<br />
-<input type="text" class="form-control" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
+<div class="col-lg-4 campos"> 
+<label for="adianto">Pena min. adianto</label>
+<input type="text" class="form-control" id="adianto" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
-<div class="form-group"> 
-Pena min. adianto<br />
-<input type="text" class="form-control" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
+<div class="col-lg-4 campos"> 
+<label for="atrazo">Pena min. atraso</label>
+<input type="text" class="form-control" id="atrazo" name="atrazo[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atrazo"]).'.'.substr($vet_linha["c02_pena_atrazo"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
-<div class="form-group"> 
-Pena min. atraso<br />
-<input type="text" class="form-control" name="atrazo[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atrazo"]).'.'.substr($vet_linha["c02_pena_atrazo"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
-</div>
-
-<div class="form-group"> 
-Modalidade<br />
-<select name="modalidade[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
+<div class="col-lg-4 campos"> 
+<label for="modalidade">Modalidade</label>
+<select id="modalidade" name="modalidade[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
 	<option value="1">Modalidade 1</option>
 </select>
 </div>
@@ -243,7 +260,8 @@ Modalidade<br />
     </button>
   </div>
 </div>
-
+</div>
+</div>
 <?
 $ultimo_id = $vet_linha["c02_codigo"];
 }
