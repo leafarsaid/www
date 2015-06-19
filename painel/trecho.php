@@ -1,15 +1,3 @@
-<style>
-.botaotrecho{
-	display: inline-block;
-	border: thin solid black;
-	background: grey;
-	margin: 5px;
-	padding: 5px;
-	color: black;
-}
-
-</style>
-
 <?
 if ($_SESSION['logado']>0 || $_SESSION['logado']==null) exit();
 
@@ -135,7 +123,7 @@ if (isset($_POST["cmd"]))
 	}
 }
 ?>
-<div class="container">
+<div style="padding-right: 150px">
 <h1>Trechos</h1>
 <form name="comando" method="post">
 <?
@@ -152,10 +140,15 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 	$vet_linha["c02_pena_adianto"] = ($vet_linha["c02_pena_adianto"]) ? $vet_linha["c02_pena_adianto"] : '0.00';
 	$vet_linha["c02_pena_atrazo"] = ($vet_linha["c02_pena_atrazo"]) ? $vet_linha["c02_pena_atrazo"] : '0.00';
 ?>
-  
-<a href="#" onclick="enviaComando('add_trecho', <?= $vet_linha["c02_codigo"] ?>)"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Trecho</button></a>
- 
-<div class="form-group"> 
+
+<div style="float: right; margin-top: -45px;">
+	<button type="button" class="btn btn-primary" onclick="enviaComando('add_trecho', <?= $vet_linha["c02_codigo"] ?>)">
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Trecho
+	</button>
+</div>
+<div style="clear: both; height: 30px;"></div>
+
+<div class="form-group">
 <div class="col-lg-4 campos">
 <label for="trecho">Trecho</label>
 <select id="trecho" name="trecho[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
@@ -172,30 +165,35 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 </select>
 </div>
 	
-<div class="col-lg-4 campos "> 	
+<div class="col-lg-4 campos"> 	
 <label for="nome">Nome</label>
 <input type="text" class="form-control" id="nome" name="nome[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_nome"] ?>" />
 </div>
-    
-<div class='col-sm-4'>
-            <div class="form-group">
-            	<label for="dat1">Data</label>
-                <div class='input-group date' id='datetimepicker3'>     
-                	<input type="text" class="form-control" />           	
-                    <!-- input type="text" class="form-control" id="dat" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_data"] ?>" /-->
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-time"></span>
-                    </span>
-                </div>
-            </div>
+
+<?php 
+$origData = $vet_linha["c02_data"];
+
+$valData = $origData[8].$origData[9]."/".$origData[5].$origData[6]."/".$origData[0].$origData[1].$origData[2].$origData[3];
+?>
+
+<div class="col-sm-4">
+  <label for="dat">Data</label>
+  <div id="datetimepicker1" class="input-append date">
+    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" class="form-control" id="dat" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $valData; ?>" />
+    <span class="add-on">
+      <icon data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </icon>
+    </span>
+  </div>
 </div>
 <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker3').datetimepicker({
-                    format: 'LT'
-                });
-            });
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'pt-BR'
+    });
+  });
 </script>
+
 
 <div class="col-lg-4 campos"> 
 <label for="orig">Origem</label>
@@ -208,7 +206,7 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="dist">Dist&acirc;ncia</label>
+<label for="dist">Dist&acirc;ncia (m)</label>
 <input type="text" class="form-control" id="dist" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" />
 </div>
 
@@ -233,7 +231,9 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 	<option value="1">Modalidade 1</option>
 </select>
 </div>
-    
+
+<div style="clear: both; height: 30px;"></div>
+   
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
     <button type="button" class="btn btn-success" onclick="enviaComando('atualizar', <?= $vet_linha["c02_codigo"] ?>)">
@@ -263,7 +263,7 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 </div>
 </div>
 <?
-$ultimo_id = $vet_linha["c02_codigo"];
+	$ultimo_id = $vet_linha["c02_codigo"];
 }
 ?>
   <!--tr class="linhas">
