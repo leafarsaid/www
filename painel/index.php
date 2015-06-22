@@ -7,14 +7,6 @@ set_time_limit(0);
 require_once "../util/objDB.php";
 require_once "../util/gerador_linhas.php";
 
-/* 
-$sql = "update t02_trecho set c02_codigo = 1 where c02_codigo = 12";
-$sql = "select * from t02_trecho";
-$obj_res=$obj_controle->executa($sql);
-$auth = $obj_res->getLinha("assoc");
-exit(); 
-*/
-
 if ($_SESSION['logado']>4 || $_SESSION['logado']==null) exit("<script>document.location=\"../auth.php?db=".$_REQUEST['db']."&uri=".$_SERVER['REQUEST_URI']."\"</script>");
 
 //
@@ -34,34 +26,11 @@ if ($_SESSION['nivel']==0){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
 <title>Painel de Cadastro - Chronosat</title>	
-<!-- style type="text/css">	
-	.tabelas_resultados {
-		font-size: 15px;
-		font-family: Arial, Helvetica, sans-serif;
-		color: #333333;
-		background-color: #eeeeee;
-		text-align: center;
-		display: table-row-group;
-		border: 5px solid #ffffff;
-	}
-	.linhas {
-		border: 1px solid #000000;
-		font-size: 15px;
-		font-family: Arial, Helvetica, sans-serif;
-		color: #333333;
-		background-color: #eeeeee;
-		text-align: center;
-	}
-	.botao {
-	font-family:Arial, Helvetica, sans-serif;
-	size: 20px;
-	font-weight: bolder;
-	cursor: pointer;
-	}
-	</style-->
+
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/dashboard.css" rel="stylesheet">
 	<link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="css/lightbox.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -98,21 +67,21 @@ if ($_SESSION['nivel']==0){
 
 				<?
 				switch($bt){
-					case 1: if ($_SESSION['logado']==0) include"montadora.php"; break;
-					case 2: if ($_SESSION['logado']==0) include"modelo.php"; break;
-					case 3: if ($_SESSION['logado']==0) include"categoria.php"; break;
-					case 4: if ($_SESSION['logado']==0) include"modalidade.php"; break;
-					case 5: if ($_SESSION['logado']==0) include"trecho.php"; break;
-					case 6: if ($_SESSION['logado']==0) include"atribtrecho.php"; break;
-					case 7: if ($_SESSION['logado']==0) include"tripulante.php"; break;
-					case 8: if ($_SESSION['logado']==0) include"veiculo.php"; break;
-					case 9: if ($_SESSION['logado']==0) include"penalidade.php"; break;						
-					case 10: if ($_SESSION['logado']==0) include"limpa_tempos.php"; break;					
-					case 11: include"senhas.php"; break;
-					case 12: include"import.php"; break;
-					case 13: include"ocorrencia.php"; break;
-					case 14: include"import_comp.php"; break;
-					case 15: include"prova.php"; break; 
+					case 1: if ($_SESSION['logado']==0) include"modulos/montadora/montadora.php"; break;
+					case 2: if ($_SESSION['logado']==0) include"modulos/modelo/modelo.php"; break;
+					case 3: if ($_SESSION['logado']==0) include"modulos/categoria/categoria.php"; break;
+					case 4: if ($_SESSION['logado']==0) include"modulos/modalidade/modalidade.php"; break;
+					case 5: if ($_SESSION['logado']==0) include"modulos/trecho/trecho.php"; break;
+					case 6: if ($_SESSION['logado']==0) include"modulos/trecho/atribtrecho.php"; break;
+					case 7: if ($_SESSION['logado']==0) include"modulos/tripulantes/tripulante.php"; break;
+					case 8: if ($_SESSION['logado']==0) include"modulos/veiculo/veiculo.php"; break;
+					case 9: if ($_SESSION['logado']==0) include"modulos/penalidade/penalidade.php"; break;						
+					case 10: if ($_SESSION['logado']==0) include"modulos/limpa_tempos/limpa_tempos.php"; break;					
+					case 11: include"modulos/usuarios/senhas.php"; break;
+					case 12: include"modulos/import/import.php"; break;
+					case 13: include"modulos/ocorrencia/ocorrencia.php"; break;
+					case 14: include"modulos/import/import_comp.php"; break;
+					case 15: include"modulos/prova/prova.php"; break; 
 				}
 				?>
 </div>

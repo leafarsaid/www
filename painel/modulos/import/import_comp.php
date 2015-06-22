@@ -1,8 +1,8 @@
 <html><head></head><body>
 <?php
 // bibliotecas
-require_once "../util/database/include/config_bd.inc.php";
-require_once "../util/database/class/ControleBDFactory.class.php";
+require_once "../../../util/database/include/config_bd.inc.php";
+require_once "../../../util/database/class/ControleBDFactory.class.php";
 
 // criando objetos
 $obj_controle = ControleBDFactory::getControlador(DB_DRIVER);

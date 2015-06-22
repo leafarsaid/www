@@ -242,19 +242,19 @@ $valData = $origData[8].$origData[9]."/".$origData[5].$origData[6]."/".$origData
     </button>
   </div>
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-danger" onclick="confirm('Tem certeza que deseja remover o trecho?',enviaComando('remover', <?= $vet_linha["c02_codigo"] ?>))">
+    <button type="button" class="btn btn-danger" onclick="if (confirm('Tem certeza que deseja remover o trecho?')) enviaComando('remover', <?= $vet_linha["c02_codigo"] ?>)">
     	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
     	Excluir
     </button>
   </div>
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-warning" onclick="confirm('Tem certeza que deseja aplicar penalidades no trecho?',enviaComando('penalch', <?= $vet_linha["c02_codigo"] ?>))">
+    <button type="button" class="btn btn-warning" onclick="if (confirm('Tem certeza que deseja aplicar penalidades no trecho?')) enviaComando('penalch', <?= $vet_linha["c02_codigo"] ?>)">
     	<span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
     	Penal CH
     </button>
   </div>
   <div class="btn-group" role="group">
-    <button type="button" class="btn btn-info" onclick="confirm('Tem certeza que deseja resetar penalidades no trecho?',enviaComando('reset_penalch', <?= $vet_linha["c02_codigo"] ?>))">
+    <button type="button" class="btn btn-info" onclick="if (confirm('Tem certeza que deseja resetar penalidades no trecho?')) enviaComando('reset_penalch', <?= $vet_linha["c02_codigo"] ?>)">
     	<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
     	Reset CH
     </button>
