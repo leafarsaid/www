@@ -214,6 +214,3 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-.project
-*.prefs
-.settings/org.eclipse.wst.common.project.facet.core.xml
