@@ -7,6 +7,8 @@ $arr_ordem_ch = array();
 $obj_res0 = $obj_controle->executa("SELECT * FROM t11_prova LIMIT 1", true);
 $vet_ch = $obj_res0->getLinha("assoc");
 $etapas_ch = explode(';',$vet_ch["c11_ordemch"]);
+$trecho = (isset($_REQUEST['trecho'])) ? $_REQUEST['trecho'] : 1;
+$modalidade = (isset($_REQUEST['modalidade'])) ? $_REQUEST['modalidade'] : 1;
 $i = 0;
 
 foreach($etapas_ch AS $etapa){
@@ -39,7 +41,7 @@ if (isset($_POST["cmd"]))
 	$id = $_POST["id"];	
 	$tempoch = ($_POST["tempoch"][$id]) ? ($_POST["tempoch"][$id]) : '00:00:00.00';
 	$adianto = ($_POST["adianto"][$id]) ? ($_POST["adianto"][$id]) : '00:00:00.00';
-	$atrazo = ($_POST["atrazo"][$id]) ? ($_POST["atrazo"][$id]) : '00:00:00.00';	
+	$atraso = ($_POST["atraso"][$id]) ? ($_POST["atraso"][$id]) : '00:00:00.00';	
 		
 
 	$competidores = array();
@@ -74,7 +76,7 @@ if (isset($_POST["cmd"]))
 			$dif = ($tempoch_txt - $vet_trecho['c02_tempo_ch'])/60;
 			$dif = ($dif < 0) ? ceil($dif) : floor($dif);
 			$competidores[$numeral]['dif_tempoch'] = $dif;
-			$pena_trecho_ch = ($dif < 0) ? (($dif *(-1)) * $vet_trecho['c02_pena_adianto']) : (($dif) * $vet_trecho['c02_pena_atrazo']);
+			$pena_trecho_ch = ($dif < 0) ? (($dif *(-1)) * $vet_trecho['c02_pena_adianto']) : (($dif) * $vet_trecho['c02_pena_atraso']);
 			$competidores[$numeral]['pena_trecho_ch'] = $pena_trecho_ch;
 		} else {
 			$dif = NULL;
@@ -92,11 +94,11 @@ if (isset($_POST["cmd"]))
 	{
 		case "ATUALIZAR":
 			$alert = "alert('ERRO:\\n\\nFalha ao atualizar campo')";
-			$sql = "UPDATE t02_trecho SET c02_nome = '".$nome[$id]."', c02_data = '".$dat[$id]."', c02_origem = '".$orig[$id]."', c02_destino = '".$dest[$id]."', c02_distancia = '".$dist[$id]."', c02_tempo_ch = CONCAT(TIME_TO_SEC('".$tempoch."'),'.','".substr($tempoch,-2)."'), c02_pena_adianto = CONCAT(TIME_TO_SEC('".$adianto."'),'.','".substr($adianto,-2)."'), c02_pena_atrazo = CONCAT(TIME_TO_SEC('".$atrazo."'),'.','".substr($atrazo,-2)."'), c02_status = '".$status[$id]."' WHERE c02_codigo = ".$id;
+			$sql = "UPDATE t02_trecho SET c02_nome = '".$nome[$id]."', c02_data = '".$dat[$id]."', c02_origem = '".$orig[$id]."', c02_destino = '".$dest[$id]."', c02_distancia = '".$dist[$id]."', c02_tempo_ch = CONCAT(TIME_TO_SEC('".$tempoch."'),'.','".substr($tempoch,-2)."'), c02_pena_adianto = CONCAT(TIME_TO_SEC('".$adianto."'),'.','".substr($adianto,-2)."'), c02_pena_atraso = CONCAT(TIME_TO_SEC('".$atraso."'),'.','".substr($atraso,-2)."'), c02_status = '".$status[$id]."' WHERE c02_codigo = ".$id;
 			break;
 		case "ADICIONAR":
 			$alert = "alert('ERRO:\\n\\nFalha ao adicionar campo')";
-			$sql = "INSERT INTO t02_trecho (c02_nome, c02_data, c02_origem, c02_destino, c02_distancia, c02_tempo_ch, c02_pena_adianto, c02_pena_atrazo, c02_status) values ('".$nome[$id]."','".$dat[$id]."', '".$orig[$id]."','".$dest[$id]."','".$dist[$id]."',CONCAT(TIME_TO_SEC('".$tempoch."'),'.',".substr($tempoch,-2)."),CONCAT(TIME_TO_SEC('".$adianto."'),'.',".substr($adianto,-2)."),CONCAT(TIME_TO_SEC('".$atrazo."'),'.',".substr($atrazo,-2)."),'".$status[$id]."')";
+			$sql = "INSERT INTO t02_trecho (c02_nome, c02_data, c02_origem, c02_destino, c02_distancia, c02_tempo_ch, c02_pena_adianto, c02_pena_atraso, c02_status) values ('".$nome[$id]."','".$dat[$id]."', '".$orig[$id]."','".$dest[$id]."','".$dist[$id]."',CONCAT(TIME_TO_SEC('".$tempoch."'),'.',".substr($tempoch,-2)."),CONCAT(TIME_TO_SEC('".$adianto."'),'.',".substr($adianto,-2)."),CONCAT(TIME_TO_SEC('".$atraso."'),'.',".substr($atraso,-2)."),'".$status[$id]."')";
 			break;
 		case "REMOVER":
 			$alert = "alert('ERRO:\\n\\nFalha ao remover campo')";
@@ -127,34 +129,30 @@ if (isset($_POST["cmd"]))
 <h1>Trechos</h1>
 <form name="comando" method="post">
 <?
-$query = "SELECT * FROM t02_trecho";
 
-//if (){
-$query .= " WHERE c02_codigo=1";
-//}
+$query = "SELECT * FROM t02_trecho WHERE c02_codigo=$trecho";
 
 $obj_res = $obj_controle->executa($query, true);
-while ($vet_linha = $obj_res->getLinha("assoc")) 
-{
-	$vet_linha["c02_tempo_ch"] = ($vet_linha["c02_tempo_ch"]) ? $vet_linha["c02_tempo_ch"] : '0.00';
-	$vet_linha["c02_pena_adianto"] = ($vet_linha["c02_pena_adianto"]) ? $vet_linha["c02_pena_adianto"] : '0.00';
-	$vet_linha["c02_pena_atrazo"] = ($vet_linha["c02_pena_atrazo"]) ? $vet_linha["c02_pena_atrazo"] : '0.00';
+$vet_linha = $obj_res->getLinha("assoc"); 
+
+$vet_linha["c02_tempo_ch"] = ($vet_linha["c02_tempo_ch"]) ? $vet_linha["c02_tempo_ch"] : '0.00';
+$vet_linha["c02_pena_adianto"] = ($vet_linha["c02_pena_adianto"]) ? $vet_linha["c02_pena_adianto"] : '0.00';
+$vet_linha["c02_pena_atraso"] = ($vet_linha["c02_pena_atraso"]) ? $vet_linha["c02_pena_atraso"] : '0.00';
+
 ?>
+
 
 <div style="float: right; margin-top: -45px;">
 	<button type="button" class="btn btn-primary" onclick="enviaComando('add_trecho', <?= $vet_linha["c02_codigo"] ?>)">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Trecho
 	</button>
 </div>
+
+<div class="panel panel-default">
+
 <div style="clear: both; height: 30px;"></div>
 
 <div class="form-group">
-<div class="col-lg-4 campos">
-<label for="trecho">Trecho</label>
-<select id="trecho" name="trecho[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
-	<option value="1">Trecho 1</option>
-</select>
-</div>	
 
 <div class="col-lg-4 campos"> 
 <label for="status">Status</label>
@@ -172,67 +170,68 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 
 <?php 
 $origData = $vet_linha["c02_data"];
-
 $valData = $origData[8].$origData[9]."/".$origData[5].$origData[6]."/".$origData[0].$origData[1].$origData[2].$origData[3];
 ?>
 
 <div class="col-sm-4">
-  <label for="dat">Data</label>
-  <div id="datetimepicker1" class="input-append date">
-    <input data-format="dd/MM/yyyy hh:mm:ss" type="text" class="form-control" id="dat" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $valData; ?>" />
-    <span class="add-on">
-      <icon data-time-icon="icon-time" data-date-icon="icon-calendar">
-      </icon>
-    </span>
-  </div>
+	<label for="dat">Data</label>
+	<input data-format="dd/MM/yyyy hh:mm:ss" type="text" class="form-control" id="dat" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $valData; ?>" />
 </div>
-<script type="text/javascript">
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-      language: 'pt-BR'
-    });
-  });
-</script>
 
 
 <div class="col-lg-4 campos"> 
-<label for="orig">Origem</label>
-<input type="text" class="form-control" id="orig" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" />
+	<label for="orig">Origem</label>
+	<input type="text" class="form-control" id="orig" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" />
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="dest">Destino</label>
-<input type="text" class="form-control" id="dest" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" />
+	<label for="dest">Destino</label>
+	<input type="text" class="form-control" id="dest" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" />
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="dist">Dist&acirc;ncia (m)</label>
-<input type="text" class="form-control" id="dist" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" />
+	<label for="dist">Dist&acirc;ncia (m)</label>
+	<input type="text" class="form-control" id="dist" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" />
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="tempoch">Tempo CH</label>
-<input type="text" class="form-control" id="tempoch" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
+	<label for="tempoch">Tempo CH</label>
+	<input type="text" class="form-control" id="tempoch" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="adianto">Pena min. adianto</label>
-<input type="text" class="form-control" id="adianto" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
+	<label for="adianto">Pena min. adianto</label>
+	<input type="text" class="form-control" id="adianto" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
 <div class="col-lg-4 campos"> 
-<label for="atrazo">Pena min. atraso</label>
-<input type="text" class="form-control" id="atrazo" name="atrazo[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atrazo"]).'.'.substr($vet_linha["c02_pena_atrazo"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
+	<label for="atraso">Pena min. atraso</label>
+	<input type="text" class="form-control" id="atraso" name="atraso[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atraso"]).'.'.substr($vet_linha["c02_pena_atraso"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 </div>
 
-<div class="col-lg-4 campos"> 
-<label for="modalidade">Modalidade</label>
-<select id="modalidade" name="modalidade[<?= $vet_linha["c02_codigo"] ?>]" class="form-control">
-	<option value="1">Modalidade 1</option>
-</select>
+</div>
+</div>
 </div>
 
-<div style="clear: both; height: 30px;"></div>
+<div class="col-lg-12">
+<ul class="nav nav-tabs">
+<?php 
+	$query3 = "SELECT * FROM t10_modalidade";
+	$obj_res3 = $obj_controle->executa($query3, true);
+	  
+	while($vet_linha3 = $obj_res3->getLinha("assoc")){
+		$active = ($vet_linha3["c10_codigo"]==$modalidade) ? " class=\"active\"" : "";
+		$location = "?db=".$_REQUEST['db']."&bt=".$_REQUEST['bt']."&trecho=".$_REQUEST['trecho']."&modalidade=".$vet_linha3["c10_codigo"];
+		$texto_mod = $vet_linha3["c10_nome"];
+
+		printf("<li role=\"presentation\"%s><a href=\"%s\">%s</a></li>", $active, $location, $texto_mod);
+	}
+?>
+</ul>
+<div class="well">
+oioioioii
+</div>
+</div>
    
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
   <div class="btn-group" role="group">
@@ -259,37 +258,9 @@ $valData = $origData[8].$origData[9]."/".$origData[5].$origData[6]."/".$origData
     	Reset CH
     </button>
   </div>
+
+
 </div>
-</div>
-</div>
-<?
-	$ultimo_id = $vet_linha["c02_codigo"];
-}
-?>
-  <!--tr class="linhas">
-  
-    <td>&nbsp;</td>
-    <td valign="bottom">
-    Adicionar novo:<br />
-    <input type="text" name="nome[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="dat[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="orig[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="dest[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="dist[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="tempoch[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="adianto[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom"><input type="text" name="atrazo[<?= $ultimo_id+1 ?>]" size="10" maxsize="20" value="" /></td>
-    <td valign="bottom">
-<select name="status[<?= $ultimo_id+1 ?>]">
-<option value="NI">N&atilde;o iniciado</option>
-<option value="I">Iniciado</option>
-<option value="F">Finalizado</option>
-</select>
-    </td>
-    <td valign="bottom">
-    <a href="#" onclick="enviaComando('adicionar', <?= $ultimo_id+1 ?>)"><img src="imagens/inserir.gif" border="0" /></a>
-    </td>
-  </tr-->
 
 <input type="hidden" name="id" />
 <input type="hidden" name="cmd" />
