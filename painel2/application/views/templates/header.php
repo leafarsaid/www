@@ -40,7 +40,7 @@
 <?
 
 function botao($modulo, $modulo_atual, $label) {
-	$loc = base_url()."modulos/".strtolower($modulo);
+	$loc = base_url().strtolower($modulo);
 	
 	if ($modulo == $modulo_atual){
 		$retorno = sprintf("<li class=\"active\"><a href=\"%s\">%s<span class=\"sr-only\">(current)</span></a></li>",$loc,$label);
@@ -57,18 +57,18 @@ function botao($modulo, $modulo_atual, $label) {
 <? 
 	$modulo = $this->uri->segment(2);
 
-	echo botao("Prova", $modulo, "Prova");
-	echo botao("Categoria", $modulo, "Categorias");
-	echo botao("Modalidade", $modulo, "Modalidades");
-	echo botao("Trecho", $modulo, "Trechos");
-	echo botao("Tripulante", $modulo, "Editar Tripulantes");
-	echo botao("Veiculo", $modulo, "Editar Ve&iacute;culos");
-	echo botao("Penalidade", $modulo, "Editar Penalidades");		
-	echo botao("Tempos", $modulo, "Inserir Tempos de CSV");	
-	echo botao("Limpar_tempos", $modulo, "Limpar tempos");	
-	echo botao("Senha", $modulo, "Alterar Senha");
-    echo botao("Ocorrencias", $modulo, "Ocorrencias");		
-    echo botao("Importar", $modulo, "Importar competidores");		
+	echo botao("prova", $modulo, "Prova");
+	echo botao("categoria", $modulo, "Categorias");
+	echo botao("modalidade", $modulo, "Modalidades");
+	echo botao("trecho", $modulo, "Trechos");
+	echo botao("tripulante", $modulo, "Editar Tripulantes");
+	echo botao("veiculo", $modulo, "Editar Ve&iacute;culos");
+	echo botao("penalidade", $modulo, "Editar Penalidades");		
+	echo botao("tempos", $modulo, "Inserir Tempos de CSV");	
+	echo botao("limpar_tempos", $modulo, "Limpar tempos");	
+	echo botao("senha", $modulo, "Alterar Senha");
+    echo botao("ocorrencias", $modulo, "Ocorrencias");		
+    echo botao("importar", $modulo, "Importar competidores");		
 ?>
 
 	</ul>

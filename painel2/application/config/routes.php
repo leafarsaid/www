@@ -53,5 +53,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; */
 
-$route['default_controller'] = 'modulos/trecho';
-$route['trecho/(:any)'] = 'modulos/trecho/$1';
+$route['default_controller'] = 'trecho/view';
+$route['(:any)/trecho/(:any)'] = 'trecho/view/$1/$2';
+$route['(:any)/trecho/(:any)/(:any)'] = 'trecho/view/$1/$2/$3';
