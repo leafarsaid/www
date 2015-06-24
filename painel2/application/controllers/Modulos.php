@@ -1,19 +1,22 @@
 <?php
 class Modulos extends CI_Controller {
+	
+		public function __construct()
+		{
+			parent::__construct();
+		}
 
-        public function view($modulo = 'trecho')
+        public function trecho($id = 1)
         {
-        	if ( ! file_exists(APPPATH.'/views/modulos/'.$modulo.'.php'))
-        	{
-        		// Módulo inexistente
-        		show_404();
-        	}
+        	$this->load->model('trechos_model');
         	
-        	$data['title'] = ucfirst($modulo);
+        	$data['id'] = $id;
+        	$data['vetor_trecho'] = $this->trechos_model->get_trechos($id);
+        	$data['vetor_trechos'] = $this->trechos_model->get_trechos();
         	
         	$this->load->helper('url');
         	$this->load->view('templates/header', $data);
-        	$this->load->view('modulos/'.$modulo, $data);
+        	$this->load->view('modulos/trecho', $data);
         	$this->load->view('templates/footer', $data);
         }
 }

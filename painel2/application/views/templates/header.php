@@ -38,16 +38,15 @@
 <div class="container-fluid">
       <div class="row">          
 <?
-$db = 1;
-$bt = 1;
 
-function botao($id, $currentId, $label) {
-	global $bt;	
-	global $db;	
+function botao($modulo, $modulo_atual, $label) {
+	$loc = base_url()."modulos/".strtolower($modulo);
 	
-	if ($id == $currentId) 	$retorno = sprintf("<li class=\"active\"><a href=\"?db=%s&bt=%s\">%s<span class=\"sr-only\">(current)</span></a></li>", $db, $id, $label);
-	else 					$retorno = sprintf("<li><a href=\"?db=%s&bt=%s\">%s</a></li>", $db, $id, $label);	
-	
+	if ($modulo == $modulo_atual){
+		$retorno = sprintf("<li class=\"active\"><a href=\"%s\">%s<span class=\"sr-only\">(current)</span></a></li>",$loc,$label);
+	} else{
+		$retorno = sprintf("<li><a href=\"%s\">%s</a></li>",$loc,$label);	
+	}
 	return $retorno;
 
 }
@@ -56,18 +55,20 @@ function botao($id, $currentId, $label) {
 <div class="col-sm-3 col-md-2 sidebar">
 	<ul class="nav nav-sidebar">
 <? 
-	echo botao("15", $bt, "Prova");
-	echo botao("3", $bt, "Categorias");
-	echo botao("4", $bt, "Modalidades");
-	echo botao("5", $bt, "Trechos");
-	echo botao("7", $bt, "Editar Tripulantes");
-	echo botao("8", $bt, "Editar Ve&iacute;culos");
-	echo botao("9", $bt, "Editar Penalidades");		
-	echo botao("12", $bt, "Inserir Tempos de CSV");	
-	echo botao("10", $bt, "Limpar tempos");	
-	echo botao("11", $bt, "Alterar Senha");	    
-    echo botao("13", $bt, "Ocorrencias");		
-    echo botao("14", $bt, "Importar competidores");		
+	$modulo = $this->uri->segment(2);
+
+	echo botao("Prova", $modulo, "Prova");
+	echo botao("Categoria", $modulo, "Categorias");
+	echo botao("Modalidade", $modulo, "Modalidades");
+	echo botao("Trecho", $modulo, "Trechos");
+	echo botao("Tripulante", $modulo, "Editar Tripulantes");
+	echo botao("Veiculo", $modulo, "Editar Ve&iacute;culos");
+	echo botao("Penalidade", $modulo, "Editar Penalidades");		
+	echo botao("Tempos", $modulo, "Inserir Tempos de CSV");	
+	echo botao("Limpar_tempos", $modulo, "Limpar tempos");	
+	echo botao("Senha", $modulo, "Alterar Senha");
+    echo botao("Ocorrencias", $modulo, "Ocorrencias");		
+    echo botao("Importar", $modulo, "Importar competidores");		
 ?>
 
 	</ul>
