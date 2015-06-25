@@ -39,8 +39,9 @@
       <div class="row">          
 <?
 
-function botao($modulo, $modulo_atual, $label) {
-	$loc = base_url().strtolower($modulo);
+function botao($modulo, $db_url, $modulo_atual, $label) {
+	
+	$loc = base_url().$db_url."/".strtolower($modulo);
 	
 	if ($modulo == $modulo_atual){
 		$retorno = sprintf("<li class=\"active\"><a href=\"%s\">%s<span class=\"sr-only\">(current)</span></a></li>",$loc,$label);
@@ -56,19 +57,20 @@ function botao($modulo, $modulo_atual, $label) {
 	<ul class="nav nav-sidebar">
 <? 
 	$modulo = $this->uri->segment(2);
+	$db_url = $this->uri->segment(1);
 
-	echo botao("prova", $modulo, "Prova");
-	echo botao("categoria", $modulo, "Categorias");
-	echo botao("modalidade", $modulo, "Modalidades");
-	echo botao("trecho", $modulo, "Trechos");
-	echo botao("tripulante", $modulo, "Editar Tripulantes");
-	echo botao("veiculo", $modulo, "Editar Ve&iacute;culos");
-	echo botao("penalidade", $modulo, "Editar Penalidades");		
-	echo botao("tempos", $modulo, "Inserir Tempos de CSV");	
-	echo botao("limpar_tempos", $modulo, "Limpar tempos");	
-	echo botao("senha", $modulo, "Alterar Senha");
-    echo botao("ocorrencias", $modulo, "Ocorrencias");		
-    echo botao("importar", $modulo, "Importar competidores");		
+	echo botao("prova", $db_url, $modulo, "Prova");
+	echo botao("categoria", $db_url, $modulo, "Categorias");
+	echo botao("modalidade", $db_url, $modulo, "Modalidades");
+	echo botao("trecho", $db_url, $modulo, "Trechos");
+	echo botao("tripulante", $db_url, $modulo, "Editar Tripulantes");
+	echo botao("veiculo", $db_url, $modulo, "Editar Ve&iacute;culos");
+	echo botao("penalidade", $db_url, $modulo, "Editar Penalidades");		
+	echo botao("tempos", $db_url, $modulo, "Inserir Tempos de CSV");	
+	echo botao("limpar_tempos", $db_url, $modulo, "Limpar tempos");	
+	echo botao("senha", $db_url, $modulo, "Alterar Senha");
+    echo botao("ocorrencias", $db_url, $modulo, "Ocorrencias");		
+    echo botao("importar", $db_url, $modulo, "Importar competidores");		
 ?>
 
 	</ul>

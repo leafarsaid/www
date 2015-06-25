@@ -1,9 +1,7 @@
 <div style="padding-right: 150px">
 	<h1>Trechos</h1>
-	
-	<?php //echo validation_errors(); ?>
-	
-	<?php //echo form_open('trecho/crud') ?>
+		
+	<?php echo form_open("$db/trecho/$id/$modalidade") ?>
 
 	<div style="float: right; margin-top: -45px;">
 		<button type="button" class="btn btn-primary" onclick="">
@@ -11,6 +9,8 @@
 			Adicionar Trecho
 		</button>
 	</div>
+	
+	<?php echo validation_errors(); ?>
 	
 	<ul class="nav nav-tabs">
 	<?php
@@ -30,9 +30,9 @@
 			<div class="col-lg-4 campos">
 			<label for="status">Status</label>
 			<select id="status" name="status" class="form-control">
-				<option value="NI" <?php ($vetor_trecho["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
-				<option value="I" <?php ($vetor_trecho["c02_status"] == "I") ? "selected" : "" ?>>Iniciado</option>
-				<option value="F" <?php ($vetor_trecho["c02_status"] == "F") ? "selected" : "" ?>>Finalizado</option>
+				<option value="NI" <?php echo ($vetor_trecho["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
+				<option value="I" <?php echo ($vetor_trecho["c02_status"] == "I") ? "selected" : "" ?>>Iniciado</option>
+				<option value="F" <?php echo ($vetor_trecho["c02_status"] == "F") ? "selected" : "" ?>>Finalizado</option>
 			</select>
 			</div>
 			
@@ -46,22 +46,22 @@
 				$valData = $origData[8].$origData[9]."/".$origData[5].$origData[6]."/".$origData[0].$origData[1].$origData[2].$origData[3];
 			?>		
 			<div class="col-sm-4 campos">
-				<label for="dat">Data</label>
-				<input data-format="dd/MM/yyyy hh:mm:ss" type="text" class="form-control" id="data" name="data" size="30" maxlength="20" value="<?php echo $valData; ?>" />
+				<label for="data">Data</label>
+				<input data-format="dd/MM/yyyy" type="text" class="form-control" id="data" name="data" size="30" maxlength="20" value="<?php echo $valData; ?>" />
 			</div>
 		
 			<div class="col-lg-4 campos">
-				<label for="orig">Origem</label>
+				<label for="origem">Origem</label>
 				<input type="text" class="form-control" id="origem" name="origem" size="30" maxlength="20" value="<?php echo $vetor_trecho["c02_origem"] ?>" />
 			</div>
 		
 			<div class="col-lg-4 campos"> 
-				<label for="dest">Destino</label>
+				<label for="destino">Destino</label>
 				<input type="text" class="form-control" id="destino" name="destino" size="30" maxlength="20" value="<?php echo $vetor_trecho["c02_destino"] ?>" />
 			</div>
 		
 			<div class="col-lg-4 campos"> 
-				<label for="dist">Dist&acirc;ncia (m)</label>
+				<label for="distancia">Dist&acirc;ncia (m)</label>
 				<input type="text" class="form-control" id="distancia" name="distancia" size="30" maxlength="20" value="<?php echo $vetor_trecho["c02_distancia"] ?>" />
 			</div>
 		
@@ -104,7 +104,7 @@
    
 	<div class="btn-group btn-group-justified" role="group" aria-label="...">
 	  <div class="btn-group" role="group">
-	    <button type="button" class="btn btn-success" onclick="enviaComando('atualizar', <?php $vetor_trecho["c02_codigo"] ?>)">
+	    <button type="submit" class="btn btn-success">
 	    	<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
 	    	Atualizar
 	    </button>
