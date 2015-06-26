@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE; */
 
-$route['default_controller'] = 'trecho/crud';
-$route['(:any)/trecho'] = 'trecho/crud/$1';
-$route['(:any)/trecho/(:num)'] = 'trecho/crud/$1/$2';
-$route['(:any)/trecho/(:num)/(:num)'] = 'trecho/crud/$1/$2/$3';
+$route['default_controller'] = 'trechos/crud';
+$route['(:any)/trechos'] = 'trechos/crud/$1';
+$route['(:any)/trechos/(:num)'] = 'trechos/crud/$1/$2';
+$route['(:any)/trechos/(:num)/(:num)'] = 'trechos/crud/$1/$2/$3';

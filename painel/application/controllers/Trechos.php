@@ -1,5 +1,5 @@
 <?php
-class Trecho extends CI_Controller {
+class Trechos extends CI_Controller {
 
 	public function __construct(){
 
@@ -33,6 +33,9 @@ class Trecho extends CI_Controller {
 		} else{
 			
 			$this->trechos_model->update_trecho($id);
+			
+			$data['vetor_trecho'] = $this->trechos_model->get_trechos($id);
+			$data['vetor_trechos'] = $this->trechos_model->get_trechos();
 			
 			$this->load->view('templates/header', $data);
 			$this->load->view('modulos/trecho', $data);

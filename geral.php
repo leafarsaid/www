@@ -77,16 +77,16 @@ foreach ($lista_array as $v) {
 	foreach ($arr_ss as $x) array_push($lista[$i],substr($v['ss'.$x],0,$length_str));
 
 	//TEMPO	BRUTO
-	array_push($lista[$i], '<b>'.substr($v['tempo'],0,8)."</b>");
+	array_push($lista[$i], '<b>'.substr($v['tempo'],0,$length_str)."</b>");
 
 	//PENAIS - BONUS
-	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],0,8)."</div>";
-	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],0,8)."</div>";
+	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],0,$length_str)."</div>";
+	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],0,$length_str)."</div>";
 	array_push($lista[$i], $str_penais_bonus);
 
 	//TEMPO TOTAL - DIF. LIDER
-	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($v['total'],0,8)."</b></div>";
-	$str_tempo_total .='<br>'.substr($v['diferenca_lider'],0,8);
+	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($v['total'],0,$length_str)."</b></div>";
+	$str_tempo_total .='<br>'.substr($v['diferenca_lider'],0,$length_str);
 	array_push($lista[$i], $str_tempo_total);
 	$i++;
 }

@@ -130,8 +130,7 @@ function geraDadosSS($arr_comp, $iFIM) {
 
 		//TEMPOS
 		if (($arr_comp[$i]["tempo"] != 0) && ($stat <> "D")) {
-			if ($_REQUEST['trecho']==0) $length_str = 10;
-			else $length_str = 8;
+			$length_str = 11;
 			array_push($arr_retorno[$i],substr(secToTime($arr_comp[$i]["tempo"]),0,$length_str));		//tempo sem penalidades
 			array_push($arr_retorno[$i],($stat == "N") ? $arr_comp[$i]["penais"] : "* * *");	//penalidades
 			array_push($arr_retorno[$i],$arr_comp[$i]["bonus"]);	//bonus

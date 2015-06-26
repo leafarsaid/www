@@ -1,7 +1,7 @@
 <div style="padding-right: 150px">
 	<h1>Trechos</h1>
 		
-	<?php echo form_open("$db/trecho/$id/$modalidade") ?>
+	<?php echo form_open("$db/trechos/$id/$modalidade") ?>
 
 	<div style="float: right; margin-top: -45px;">
 		<button type="button" class="btn btn-primary" onclick="">
@@ -16,7 +16,7 @@
 	<?php
 		foreach ($vetor_trechos AS $item_trecho){
 			$active = ($item_trecho["c02_codigo"]==$id) ? " class=\"active\"" : "";
-			$location = base_url().$db."/trecho/".$item_trecho["c02_codigo"]."/".$modalidade;
+			$location = base_url().$db."/trechos/".$item_trecho["c02_codigo"]."/".$modalidade;
 			$texto_mod = $item_trecho["c02_nome"];
 	
 			printf("<li role=\"presentation\"%s><a href=\"%s\">%s</a></li>", $active, $location, $texto_mod);

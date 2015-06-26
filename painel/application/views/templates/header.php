@@ -60,17 +60,18 @@ function botao($modulo, $db_url, $modulo_atual, $label) {
 	$db_url = $this->uri->segment(1);
 
 	echo botao("prova", $db_url, $modulo, "Prova");
-	echo botao("categoria", $db_url, $modulo, "Categorias");
-	echo botao("modalidade", $db_url, $modulo, "Modalidades");
-	echo botao("trecho", $db_url, $modulo, "Trechos");
-	echo botao("tripulante", $db_url, $modulo, "Editar Tripulantes");
-	echo botao("veiculo", $db_url, $modulo, "Editar Ve&iacute;culos");
-	echo botao("penalidade", $db_url, $modulo, "Editar Penalidades");		
-	echo botao("tempos", $db_url, $modulo, "Inserir Tempos de CSV");	
-	echo botao("limpar_tempos", $db_url, $modulo, "Limpar tempos");	
-	echo botao("senha", $db_url, $modulo, "Alterar Senha");
-    echo botao("ocorrencias", $db_url, $modulo, "Ocorrencias");		
-    echo botao("importar", $db_url, $modulo, "Importar competidores");		
+	echo botao("categorias", $db_url, $modulo, "Categorias");
+	echo botao("modalidades", $db_url, $modulo, "Modalidades");
+	echo botao("trechos", $db_url, $modulo, "Trechos");
+	echo botao("tripulantes", $db_url, $modulo, "Tripulantes");
+	echo botao("veiculos", $db_url, $modulo, "Ve&iacute;culos");
+	echo botao("penalidades", $db_url, $modulo, "Penalidades");		
+	echo botao("usuarios", $db_url, $modulo, "Usu&aacute;rios");	
+	echo botao("senha", $db_url, $modulo, "Alterar Minha Senha");	
+	echo botao("limpar_tempos", $db_url, $modulo, "Limpar Tempos");	
+    echo botao("ocorrencias", $db_url, $modulo, "Ocorr&ecirc;ncias");		
+	echo botao("tempos", $db_url, $modulo, "Importar Tempos de CSV");
+    echo botao("importar", $db_url, $modulo, "Importar Competidores");		
 ?>
 
 	</ul>
