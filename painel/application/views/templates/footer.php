@@ -9,6 +9,7 @@
 <script src="<?php echo base_url(); ?>/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>/js/moment.js"></script>
 <script src="<?php echo base_url(); ?>/js/bootstrap-datetimepicker.min.js"></script>
+<script src="<?php echo base_url(); ?>/js/jquery.bootstrap-touchspin.js"></script>
 
 </body>
 

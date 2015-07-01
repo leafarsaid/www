@@ -8,6 +8,7 @@
 	<link href="<?php echo base_url(); ?>/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>/css/dashboard.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	<link href="<?php echo base_url(); ?>/css/jquery.bootstrap-touchspin.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>/css/lightbox.min.css" rel="stylesheet">
 </head>
 
