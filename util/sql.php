@@ -10,7 +10,7 @@
 ///----------------------------------------------------------------------------------------------------------------------------------
 function geraSqlGeral2($arr_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 	// define qual a coluna de categoria deve ser usada
-	$col_categoria = ($_REQUEST['subcategoria'] || ($campeonato == "B")) ? "c13_codigo2" : "c13_codigo";
+	$col_categoria = ($_REQUEST['subcategoria'] || ($campeonato == "B")) ? "c13_codigo" : "c13_codigo";
 	
 	$str_sql = 'SELECT DISTINCT ';
 	$str_sql .= 'c03_numero AS numeral, ';
@@ -59,8 +59,10 @@ function geraSqlGeral2($arr_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 	
 	$str_sql .= "FROM t03_veiculo WHERE (c03_status <> 'O') ";
 	
-	if ($campeonato == "F") $str_sql.="AND (c13_codigo = 11 OR c13_codigo = 21) ";
-	elseif ($campeonato == "B") $str_sql.="AND (c13_codigo2 > 0) ";
+	//if ($campeonato == "F") $str_sql.="AND (c13_codigo = 11 OR c13_codigo = 21) ";
+	//elseif ($campeonato == "B") $str_sql.="AND (c13_codigo2 > 0) ";
+
+	if($campeonato) $str_sql.="AND getCampeonato(c03_codigo) LIKE '%".$campeonato."%' ";
 	
 	if($int_id_cat) $str_sql.="AND ($col_categoria = $int_id_cat) ";
 	elseif ($int_id_mod) $str_sql.="AND (c10_codigo = $int_id_mod) ";
@@ -80,7 +82,7 @@ function geraSqlGeral2($arr_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 function geraSqlSS2($int_id_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 
 	// define qual a coluna de categoria deve ser usada
-	$col_categoria = ($_REQUEST['subcategoria'] || ($campeonato == "B")) ? "c13_codigo2" : "c13_codigo";
+	$col_categoria = ($_REQUEST['subcategoria'] || ($campeonato == "B")) ? "c13_codigo" : "c13_codigo";
 	
 	$ss_sql  = 'SELECT ';
 	$ss_sql .= "DISTINCT c03_numero AS numeral, ";
@@ -107,8 +109,10 @@ function geraSqlSS2($int_id_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 	
 	$ss_sql .= "FROM t03_veiculo WHERE (c03_status <> 'O') ";
 	
-	if ($campeonato == "F") $ss_sql.="AND (c13_codigo = 11 OR c13_codigo = 21) ";
-	elseif ($campeonato == "B") $ss_sql.="AND (c13_codigo2 > 0) ";
+	//if ($campeonato == "F") $ss_sql.="AND (c13_codigo = 11 OR c13_codigo = 21) ";
+	//elseif ($campeonato == "B") $ss_sql.="AND (c13_codigo2 > 0) ";
+	
+	if($campeonato) $ss_sql.="AND getCampeonato(c03_codigo) LIKE '%".$campeonato."%' ";
 	
 	if ($int_id_cat) $ss_sql.="AND ($col_categoria = $int_id_cat) ";
 	elseif ($int_id_mod) $ss_sql.="AND (c10_codigo = $int_id_mod) ";

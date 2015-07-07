@@ -1,5 +1,12 @@
 <?
-	if (isset($_REQUEST["trechos"])) {
+
+$arr = criaArray("SELECT c02_codigo, c02_nome FROM t02_trecho WHERE c02_status='I' AND c02_aparece_no_relatorio=1");
+foreach ($arr AS $item){
+	$arr_ss[] = $item['c02_codigo'];
+	$arr_especiais[] = $item['c02_nome'];
+}
+
+/*	if (isset($_REQUEST["trechos"])) {
 		$arr_ss = explode(",",$_REQUEST["trechos"]);
 		$trecho_inicial = $arr_ss[0];
 		$trecho_final = end($arr_ss);
@@ -28,4 +35,5 @@
 			
 		$arr_ss = explode(",",$str_ss);	
 	}
+*/
 ?>

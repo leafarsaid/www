@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost:88/painel';
+//$config['base_url'] = 'http://localhost:88/painel';
+$config['base_url'] = 'http://' . $_SERVER['HTTP_HOST'] . str_replace( basename( $_SERVER['SCRIPT_NAME'] ) , '', $_SERVER['SCRIPT_NAME'] );
 
 /*
 |--------------------------------------------------------------------------

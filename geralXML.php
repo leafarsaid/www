@@ -15,7 +15,7 @@ $int_id_ss=(int)$_REQUEST["trecho"];
 $int_id_cat= ($_REQUEST["subcategoria"]) ? (int)$_REQUEST["subcategoria"] : (int)$_REQUEST["categoria"];
 $int_id_mod=(int)$_REQUEST["modalidade"];
 $mod = $_REQUEST["mod"];
-$strFIM = ($_REQUEST["db"] == 2) ? $_REQUEST["campeonato"] : "";
+$strFIM = $_REQUEST["campeonato"];
 ///
 
 $array_todos = criaArray(geraSqlGeral2($arr_ss, $int_id_cat, $int_id_mod, $mod, $strFIM));

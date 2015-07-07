@@ -102,7 +102,9 @@ if (isset($_REQUEST["fim"])) array_push($campos_header_ss,"FIM No.");
 array_push($campos_header_ss,'<div class="trip" id="div">EQUIPE</div>');
 if (!isset($_REQUEST["categoria"])) array_push($campos_header_ss,"(POS)CAT");
 
-foreach ($arr_ss as $x) array_push($campos_header_ss,($x == "0") ? "PROL." : "ET. ".$x);
+foreach ($arr_especiais as $key => $value) {
+	array_push($campos_header_ss, $value);
+}
 
 array_push($campos_header_ss,'TEMPO');
 array_push($campos_header_ss,'<div style="color:red">Penal</div><div style="color:blue"><br>Bonus</div>');

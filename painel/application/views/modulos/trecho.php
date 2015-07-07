@@ -96,7 +96,7 @@
 				<input type="text" class="form-control" id="distancia" name="distancia" value="<?php echo $vetor_trecho["c02_distancia"] ?>" />
 			</div>
 					
-			<div class="col-lg-2 campos">
+			<div class="col-lg-3 campos">
 			<label for="status">Status</label>
 			<select id="status" name="status" class="form-control">
 				<option value="NI" <?php echo ($vetor_trecho["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
@@ -105,7 +105,7 @@
 			</select>
 			</div>					
 		
-			<div class="col-lg-2 campos"> 
+			<div class="col-lg-3 campos"> 
 				<label for="tempoch">Tempo Controle</label>
 				<input type="text" class="form-control" id="tempoch" name="tempoch" size="30" value="<?php echo gmdate("H:i:s", $vetor_trecho["c02_tempo_ch"]).'.'.substr($vetor_trecho["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 			</div>
@@ -120,7 +120,7 @@
 				<input type="text" class="form-control" id="atraso" name="atraso" size="30" value="<?php echo gmdate("H:i:s", $vetor_trecho["c02_pena_atraso"]).'.'.substr($vetor_trecho["c02_pena_atraso"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" />
 			</div>
 						
-			<div class="col-lg-5 campos">
+			<div class="col-lg-6 campos">
 				<div style="display:block; width: 100%;">
 					<label for="tipo_local_largada">Local de Processo da Largada</label>
 				</div>
@@ -137,7 +137,7 @@
 					</select>
 				</div>
 				<div style="display:inline-block; width: 5%;">em</div>
-				<div style="display:inline-block; width: 63%;">
+				<div style="display:inline-block; width: 60%;">
 					<select id="local_largada" name="local_largada" class="form-control">
 						<?php
 							foreach ($vetor_trechos AS $trecho){ 
@@ -152,7 +152,7 @@
 			</div>
 			
 			
-			<div class="col-lg-5 campos">
+			<div class="col-lg-6 campos">
 				<div style="display:block; width: 100%;">
 					<label for="tipo_local_chegada">Local de Processo da Chegada</label>
 				</div>
@@ -169,7 +169,7 @@
 					</select>
 				</div>
 				<div style="display:inline-block; width: 5%;">em</div>
-				<div style="display:inline-block; width: 63%;">
+				<div style="display:inline-block; width: 60%;">
 					<select id="local_chegada" name="local_chegada" class="form-control">
 						<?php
 							foreach ($vetor_trechos AS $trecho){ 
@@ -185,7 +185,7 @@
 			
 			
 					
-			<div class="col-lg-2 campos">
+			<div class="col-lg-3 campos">
 			<label for="aparece_no_relatorio">Aparece no Relat&oacute;rio</label>
 			<select id="aparece_no_relatorio" name="aparece_no_relatorio" class="form-control">
 				<option value="0" <?php echo ($vetor_trecho["c02_aparece_no_relatorio"] == "1") ? "selected" : "" ?>>Sim</option>
