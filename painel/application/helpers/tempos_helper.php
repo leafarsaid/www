@@ -18,3 +18,41 @@ if ( ! function_exists('data_para_bd'))
     	return date("y-m-d", strtotime($time));
     }   
 }
+
+if ( ! function_exists('tipos'))
+{
+	function tipos()
+	{
+		$vetor_tipos_tempo = array(
+				array(
+						'tipo'		=>	'L',
+						'descricao'	=>	'Largada'
+				),
+				array(
+						'tipo'		=>	'I1',
+						'descricao'	=>	'Intermedi&aacute;ria 1'
+				),
+				array(
+						'tipo'		=>	'I2',
+						'descricao'	=>	'Intermedi&aacute;ria 2'
+				),
+				array(
+						'tipo'		=>	'C',
+						'descricao'	=>	'Chegada'
+				),
+				array(
+						'tipo'		=>	'CH',
+						'descricao'	=>	'Controle'
+				),
+				array(
+						'tipo'		=>	'A',
+						'descricao'	=>	'Abastecimento'
+				),
+				array(
+						'tipo'		=>	'ACH',
+						'descricao'	=>	'Controle Anterior'
+				)
+		);
+		return $vetor_tipos_tempo;
+	}
+}

@@ -71,7 +71,7 @@ function botao($modulo, $db_url, $modulo_atual, $label) {
 	echo botao("senha", $db_url, $modulo, "Alterar Minha Senha");	
 	echo botao("limpar_tempos", $db_url, $modulo, "Limpar Tempos");	
     echo botao("ocorrencias", $db_url, $modulo, "Ocorr&ecirc;ncias");		
-	echo botao("tempos", $db_url, $modulo, "Importar Tempos de CSV");
+	echo botao("importar_tempos", $db_url, $modulo, "Importar Tempos de CSV");
     echo botao("importar", $db_url, $modulo, "Importar Competidores");		
 ?>
 

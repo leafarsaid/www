@@ -218,3 +218,4 @@ pip-log.txt
 *.prefs
 .settings/org.eclipse.wst.common.project.facet.core.xml
 *.htaccess
+*.csv

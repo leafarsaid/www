@@ -57,3 +57,6 @@ $route['default_controller'] = 'trechos/crud';
 $route['(:any)/trechos'] = 'trechos/crud/$1';
 $route['(:any)/trechos/(:num)'] = 'trechos/crud/$1/$2';
 $route['(:any)/trechos/(:num)/(:num)'] = 'trechos/crud/$1/$2/$3';
+
+$route['(:any)/importar_tempos'] = 'importar_tempos/index/$1';
+$route['(:any)/importar_tempos/upload'] = 'importar_tempos/upload/$1';

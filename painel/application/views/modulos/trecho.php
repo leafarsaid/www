@@ -2,39 +2,6 @@
 	<h1>Trechos</h1>
 		
 	<?php echo form_open("$db/trechos/$id/$modalidade") ?>
-	
-	<?php 
-		$vetor_tipos_tempo = array(
-			array(
-				'tipo'		=>	'L',
-				'descricao'	=>	'Largada'
-			),
-			array(
-				'tipo'		=>	'I1',
-				'descricao'	=>	'Intermedi&aacute;ria 1'
-			),
-			array(
-				'tipo'		=>	'I2',
-				'descricao'	=>	'Intermedi&aacute;ria 2'
-			),
-			array(
-				'tipo'		=>	'C',
-				'descricao'	=>	'Chegada'
-			),
-			array(
-				'tipo'		=>	'CH',
-				'descricao'	=>	'Controle'
-			),
-			array(
-				'tipo'		=>	'A',
-				'descricao'	=>	'Abastecimento'
-			),
-			array(
-				'tipo'		=>	'ACH',
-				'descricao'	=>	'Controle Anterior'
-			)
-		);
-	?>
 
 	<div style="float: right; margin-top: -45px;">
 		<button type="button" class="btn btn-primary" onclick="">

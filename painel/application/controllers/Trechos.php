@@ -11,6 +11,7 @@ class Trechos extends CI_Controller {
 		
 		$this->load->model('trechos_model','',$db);
 		$this->load->helper('form');
+		$this->load->helper('tempos');
 		$this->load->library('form_validation');
 		
 		$data['db'] = $db;
@@ -18,6 +19,7 @@ class Trechos extends CI_Controller {
 		$data['modalidade'] = $modalidade;
 		$data['vetor_trecho'] = $this->trechos_model->get_trechos($id);
 		$data['vetor_trechos'] = $this->trechos_model->get_trechos();
+		$data['vetor_tipos_tempo'] = tipos();
 		
 		$this->form_validation->set_rules('nome', 'Nome', 'required');
 		$this->form_validation->set_error_delimiters('<div class="alert alert-danger" role="alert">', '</div>');
@@ -39,7 +41,7 @@ class Trechos extends CI_Controller {
 			
 			$this->load->view('templates/header', $data);
 			$this->load->view('modulos/trecho', $data);
-			$this->load->view('templates/footer', $data);
+			$this->load->view('templates/footer', $data);	
 		}
 		
 		
