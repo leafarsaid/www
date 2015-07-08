@@ -62,7 +62,7 @@
 		
 		
 			<div class="col-lg-4 campos"> 	
-				<label for="nome">Nome</label>
+				<label for="nome">Nome:</label>
 				<input type="text" class="form-control" id="nome" name="nome" value="<?php echo $vetor_trecho["c02_nome"] ?>" />
 			</div>		
 			
