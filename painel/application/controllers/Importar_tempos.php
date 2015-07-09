@@ -25,6 +25,7 @@ class Importar_tempos extends CI_Controller {
 	function upload($db = "local")
 	{
 		$this->load->helper('tempos');
+		$this->load->model('tempos_model','',$db);
 		$this->load->model('trechos_model','',$db);
 		$this->load->helper('file');
 		
@@ -46,12 +47,17 @@ class Importar_tempos extends CI_Controller {
 			
 			$string = read_file($upload_data["file_path"].$upload_data["file_name"]);
 			
-			$linhas = count(explode($string,'\r'));
+			$linhas = explode($string,'\r');
+			
+			foreach($linhas AS $linha){
+				
+				$arr_linha = explode($linha,';');
+				$this->tempos_model->insert_tempo($arr_linha[0], $arr_linha[1], $this->input->post('tipo'), $this->input->post('trecho'));
+			}			
 			
 			$data = array(
 					'upload_data' => $upload_data,
 					'message_ok' => $message_ok,
-					'string' => $linhas,
 					'db' => $db
 			);
 			$this->load->view('templates/header', $data);
