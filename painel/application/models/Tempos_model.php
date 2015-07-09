@@ -16,7 +16,7 @@ class Tempos_model extends CI_Model {
 		return $query->row_array();
 	} */
 	
-	public function insert_tempo($veiculo, $tempo, $tipo, $trecho){
+	public function insert_tempo($veiculo, $tempo){
 		
 		$this->load->helper("tempos");
 		
@@ -24,12 +24,13 @@ class Tempos_model extends CI_Model {
 		
 		$data = array(
 				'c01_valor' => $tempo_segundos,
-				'c01_tipo' => $tipo,
+				'c01_tipo' => $this->input->post('tipo'),
 				'c01_status' => 'O',
 				'c03_codigo' => $veiculo,
-				'c02_codigo' => $trecho,
+				'c02_codigo' => $this->input->post('trecho'),
 				'c01_sigla' => 'FI'
 		);
+		//$this->output->enable_profiler(TRUE);
 	
 		return $this->db->insert('t01_tempos', $data);
 	}

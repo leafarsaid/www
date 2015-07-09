@@ -47,12 +47,12 @@ class Importar_tempos extends CI_Controller {
 			
 			$string = read_file($upload_data["file_path"].$upload_data["file_name"]);
 			
-			$linhas = explode($string,'\r');
+			$linhas = preg_split("(\r\n|\r|\n)",$string);
 			
 			foreach($linhas AS $linha){
 				
-				$arr_linha = explode($linha,';');
-				$this->tempos_model->insert_tempo($arr_linha[0], $arr_linha[1], $this->input->post('tipo'), $this->input->post('trecho'));
+				$arr_linha = explode(';',$linha);
+				$this->tempos_model->insert_tempo($arr_linha[0], $arr_linha[1]);
 			}			
 			
 			$data = array(
