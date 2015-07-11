@@ -41,16 +41,17 @@ if (isset($_POST["cmd"]))
 	$adianto = ($_POST["adianto"][$id]) ? ($_POST["adianto"][$id]) : '00:00:00.00';
 	$atrazo = ($_POST["atrazo"][$id]) ? ($_POST["atrazo"][$id]) : '00:00:00.00';	
 		
+	$arr = criaArray("SELECT c02_trecho_largada, c02_tipo_largada, c02_trecho_chegada, c02_tipo_chegada FROM t02_trecho WHERE c02_codigo=$id");
 
 	$competidores = array();
 	$obj_res1 = $obj_controle->executa("SELECT * FROM t03_veiculo WHERE c03_status='N'", true);
 	while($vet_comp = $obj_res1->getLinha("assoc")) {
 		$numeral = ($vet_comp["c03_codigo"] > 0) ? $vet_comp["c03_codigo"] : 0;
 		$competidores[$numeral]['numeral'] 		= $numeral;
-		$competidores[$numeral]['larg_ss'] 		= ($arr_ordem_ch[$id]['larg_ss'] > 0) ? $arr_ordem_ch[$id]['larg_ss'] : 0;
-		$competidores[$numeral]['larg_tipo'] 	= ($arr_ordem_ch[$id]['larg_ch']=='a') ? 'ACH' : 'CH';
-		$competidores[$numeral]['cheg_ss'] 		= ($arr_ordem_ch[$id]['cheg_ss'] > 0) ? $arr_ordem_ch[$id]['cheg_ss'] : 0;
-		$competidores[$numeral]['cheg_tipo'] 	= ($arr_ordem_ch[$id]['cheg_ch']=='a') ? 'ACH' : 'CH';
+		$competidores[$numeral]['larg_ss'] 		= $arr['c02_trecho_largada'];
+		$competidores[$numeral]['larg_tipo'] 	= $arr['c02_tipo_largada'];
+		$competidores[$numeral]['cheg_ss'] 		= $arr['c02_trecho_chegada'];
+		$competidores[$numeral]['cheg_tipo'] 	= $arr['c02_tipo_chegada'];
 	}
 	
 	$obj_trecho = $obj_controle->executa("SELECT * FROM t02_trecho WHERE c02_codigo=$id", true);
