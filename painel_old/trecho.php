@@ -41,7 +41,7 @@ if (isset($_POST["cmd"]))
 	$adianto = ($_POST["adianto"][$id]) ? ($_POST["adianto"][$id]) : '00:00:00.00';
 	$atrazo = ($_POST["atrazo"][$id]) ? ($_POST["atrazo"][$id]) : '00:00:00.00';	
 		
-	$arr = criaArray("SELECT c02_trecho_largada, c02_tipo_largada, c02_trecho_chegada, c02_tipo_chegada FROM t02_trecho WHERE c02_codigo=$id");
+	$arr = criaArray("SELECT c02_trecho_largada, c02_tipo_largada, c02_trecho_chegada, c02_tipo_chegada, c02_trecho_controle FROM t02_trecho WHERE c02_codigo=$id");
 
 	$competidores = array();
 	$obj_res1 = $obj_controle->executa("SELECT * FROM t03_veiculo WHERE c03_status='N'", true);
@@ -52,6 +52,7 @@ if (isset($_POST["cmd"]))
 		$competidores[$numeral]['larg_tipo'] 	= $arr['c02_tipo_largada'];
 		$competidores[$numeral]['cheg_ss'] 		= $arr['c02_trecho_chegada'];
 		$competidores[$numeral]['cheg_tipo'] 	= $arr['c02_tipo_chegada'];
+		$competidores[$numeral]['trecho_controle'] 	= $arr['c02_trecho_controle'];
 	}
 	
 	$obj_trecho = $obj_controle->executa("SELECT * FROM t02_trecho WHERE c02_codigo=$id", true);
@@ -108,7 +109,7 @@ if (isset($_POST["cmd"]))
 			foreach ($competidores AS $numeral => $competidor){
 				$c01_valor = ($competidor['pena_trecho_ch'] > 0) ? $competidor['pena_trecho_ch'] : 0;
 				$c03_codigo = ($numeral > 0) ? $numeral : 0;
-				$c02_codigo = ($id > 0) ? $id : 0;
+				$c02_codigo = ($competidor['trecho_controle'] > 0) ? $competidor['trecho_controle'] : 0;
 				$sql[] = "INSERT INTO t01_tempos (c01_valor, c01_tipo, c01_status, c01_obs, c03_codigo, c02_codigo, c01_sigla) values ($c01_valor, 'P', 'O', 'PENA_AUTOMATICA_CH', $c03_codigo, $c02_codigo, 'AUT_CH')";
 			}
 			
