@@ -30,7 +30,7 @@ class Tempos_model extends CI_Model {
 				'c02_codigo' => $this->input->post('trecho'),
 				'c01_sigla' => 'FI'
 		);
-		//$this->output->enable_profiler(TRUE);
+		///$this->output->enable_profiler(TRUE);
 	
 		return $this->db->insert('t01_tempos', $data);
 	}
