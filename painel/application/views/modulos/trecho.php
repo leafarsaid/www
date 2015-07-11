@@ -151,6 +151,27 @@
 			</div>
 			
 			
+			
+			
+			<div class="col-lg-4 campos">
+				<div style="display:block; width: 100%;">
+					<label for="t02_trecho_controle">Trecho a ser penalizado</label>
+				</div>
+				<div style="display:inline-block; width: 30%;">					
+					<select id="t02_trecho_controle" name="t02_trecho_controle" class="form-control">				
+						<?php
+							foreach ($vetor_tipos_tempo AS $tipo_tempo){ 
+								$valor = $tipo_tempo['tipo'];
+								$selected = ($tipo_tempo['tipo'] == $vetor_trecho['t02_trecho_controle']) ? " selected" : "";
+								$descricao = $tipo_tempo['descricao'];
+								echo sprintf('<option value="%s"%s>%s</option>\r\n',$valor,$selected,$descricao);
+							}
+						?>
+					</select>
+				</div>
+			</div>
+			
+			
 					
 			<div class="col-lg-3 campos">
 			<label for="aparece_no_relatorio">Aparece no Relat&oacute;rio</label>
@@ -159,6 +180,7 @@
 				<option value="1" <?php echo ($vetor_trecho["c02_aparece_no_relatorio"] == "0") ? "selected" : "" ?>>N&atilde;o</option>
 			</select>
 			</div>
+			
 			
 			
 			<input type="hidden" name="c02_codigo" value="<?php echo $vetor_trecho["c02_codigo"] ?>">

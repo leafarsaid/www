@@ -42,7 +42,8 @@ class Trechos_model extends CI_Model {
 				'c02_tipo_chegada'	=>	$this->input->post('tipo_local_chegada'),
 				'c02_status'	=>	$this->input->post('status'),
 				'c02_aparece_no_relatorio'	=>	$this->input->post('aparece_no_relatorio'),
-				'c02_numero'	=>	$this->input->post('c02_codigo')
+				'c02_numero'	=>	$this->input->post('c02_codigo'),
+				't02_trecho_controle' => $this->input->post('t02_trecho_controle')
 		);
 	
 		return $this->db->update('t02_trecho', $data, array('c02_codigo' => $id));
