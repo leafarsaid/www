@@ -1,15 +1,3 @@
-<style>
-.botaotrecho{
-	display: inline-block;
-	border: thin solid black;
-	background: grey;
-	margin: 5px;
-	padding: 5px;
-	color: black;
-}
-
-</style>
-
 <?
 if ($_SESSION['logado']>0 || $_SESSION['logado']==null) exit();
 
@@ -138,71 +126,50 @@ if (isset($_POST["cmd"]))
 
 <form name="comando" method="post">
 <table cellpadding="5" cellspacing="5">
+<tr>
+<td align="center">Número</td>
+<td align="center">Nome</td>
+<td align="center">Data</td>
+<td align="center">Origem</td>
+<td align="center">Destino</td>
+<td align="center">Distância</td>
+<td align="center">Tempo CH</td>
+<td align="center">Pena min. adianto</td>
+<td align="center">Pena min. atraso</td>
+<td align="center">Status</td>
+</tr>
+
 <?
-$query = "SELECT * FROM t02_trecho";
-
-//if (){
-$query .= " WHERE c02_codigo=1";
-//}
-
-$obj_res = $obj_controle->executa($query, true);
+$obj_res = $obj_controle->executa("SELECT * FROM t02_trecho ORDER BY c02_codigo", true);
 while ($vet_linha = $obj_res->getLinha("assoc")) 
 {
 	$vet_linha["c02_tempo_ch"] = ($vet_linha["c02_tempo_ch"]) ? $vet_linha["c02_tempo_ch"] : '0.00';
 	$vet_linha["c02_pena_adianto"] = ($vet_linha["c02_pena_adianto"]) ? $vet_linha["c02_pena_adianto"] : '0.00';
 	$vet_linha["c02_pena_atrazo"] = ($vet_linha["c02_pena_atrazo"]) ? $vet_linha["c02_pena_atrazo"] : '0.00';
 ?>
+  <tr class="linhas">
   
-  <tr>
-    <td colspan="2" align="right"><a href="#" onclick="enviaComando('add_trecho', <?= $vet_linha["c02_codigo"] ?>)"><div class="botaotrecho">+ Adicionar Trecho</div></a></td>
-  </tr>
-  <tr>
+    <td><?= $vet_linha["c02_codigo"] ?></td>
+    <td><input type="text" name="nome[<?= $vet_linha["c02_codigo"] ?>]" size="10" maxlength="20" value="<?= $vet_linha["c02_nome"] ?>" /></td>
+    <td><input type="text" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="10" maxlength="20" value="<?= $vet_linha["c02_data"] ?>" /></td>
+    <td><input type="text" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="10" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" /></td>
+    <td><input type="text" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="10" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" /></td>
+    <td><input type="text" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="10" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" /></td>
+    <td><input type="text" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="11" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
+    <td><input type="text" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="11" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
+    <td><input type="text" name="atrazo[<?= $vet_linha["c02_codigo"] ?>]" size="11" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atrazo"]).'.'.substr($vet_linha["c02_pena_atrazo"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
     <td>
-	Trecho<br />
-	<select name="trecho[<?= $vet_linha["c02_codigo"] ?>]">
-		<option value="1">Trecho 1</option>
-	</select>
-	</td>
-	<td>
-	Status<br />
-	<select name="status[<?= $vet_linha["c02_codigo"] ?>]">
-		<option value="NI" <?= ($vet_linha["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
-		<option value="I" <?= ($vet_linha["c02_status"] == "I") ? "selected" : "" ?>>Iniciado</option>
-		<option value="F" <?= ($vet_linha["c02_status"] == "F") ? "selected" : "" ?>>Finalizado</option>
-	</select>
-	</td>
-  </tr>
-  <tr>
-    <td>Nome<br /><input type="text" name="nome[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_nome"] ?>" /></td>
-    <td>Data<br /><input type="text" name="dat[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_data"] ?>" /></td>
-  </tr>
-  <tr>
-    <td>Origem<br /><input type="text" name="orig[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_origem"] ?>" /></td>
-    <td>Destino<br /><input type="text" name="dest[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_destino"] ?>" /></td>
-  </tr>
-  <tr>
-    <td>Distância<br /><input type="text" name="dist[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="20" value="<?= $vet_linha["c02_distancia"] ?>" /></td>
-    <td>Tempo CH<br /><input type="text" name="tempoch[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_tempo_ch"]).'.'.substr($vet_linha["c02_tempo_ch"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
-  </tr>
-  <tr>
-    <td>Pena min. adianto<br /><input type="text" name="adianto[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_adianto"]).'.'.substr($vet_linha["c02_pena_adianto"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
-    <td>Pena min. atraso<br /><input type="text" name="atrazo[<?= $vet_linha["c02_codigo"] ?>]" size="30" maxlength="11" value="<?= gmdate("H:i:s", $vet_linha["c02_pena_atrazo"]).'.'.substr($vet_linha["c02_pena_atrazo"],-2) ?>" onKeypress="formatar(this, '##:##:##.##');" /></td>
-  </tr>
-  <tr>
-    <td>
-    Modalidade<br />
-	<select name="modalidade[<?= $vet_linha["c02_codigo"] ?>]">
-		<option value="1">Modalidade 1</option>
-	</select>
+<select name="status[<?= $vet_linha["c02_codigo"] ?>]">
+<option value="NI" <?= ($vet_linha["c02_status"] == "NI") ? "selected" : "" ?>>N&atilde;o iniciado</option>
+<option value="I" <?= ($vet_linha["c02_status"] == "I") ? "selected" : "" ?>>Iniciado</option>
+<option value="F" <?= ($vet_linha["c02_status"] == "F") ? "selected" : "" ?>>Finalizado</option>
+</select>
     </td>
-	<td></td>
-  </tr>
-  <tr>
-    <td colspan=2>
-    <a href="#" onclick="enviaComando('atualizar', <?= $vet_linha["c02_codigo"] ?>)"><div class="botaotrecho"><img src="imagens/botao_atualizar.gif" border="0" alt="atualizar" valign="absmiddle" /> Atualizar</div></a>
-    <a href="#" onclick="confirm('Tem certeza que deseja remover o trecho?',enviaComando('remover', <?= $vet_linha["c02_codigo"] ?>))"><div class="botaotrecho"><img src="imagens/remover.gif" border="0" alt="remover" valign="absmiddle" /> Excluir</div></a>
-    <a href="#" onclick="confirm('Tem certeza que deseja aplicar penalidades no trecho?',enviaComando('penalch', <?= $vet_linha["c02_codigo"] ?>))"><div class="botaotrecho"><img src="imagens/penalch.gif" border="0" alt="Penalidades CH" valign="absmiddle" /> Penal CH</div></a>
-    <a href="#" onclick="confirm('Tem certeza que deseja resetar penalidades no trecho?',enviaComando('reset_penalch', <?= $vet_linha["c02_codigo"] ?>))"><div class="botaotrecho"><img src="imagens/reset_penalch.gif" border="0" alt="Resetar Penalidades CH" valign="absmiddle" /> Reset CH</div></a>
+    <td>
+    <a href="#" onclick="enviaComando('atualizar', <?= $vet_linha["c02_codigo"] ?>)"><img src="imagens/botao_atualizar.gif" border="0" alt="atualizar" /></a>
+    <a href="#" onclick="confirm('Tem certeza que deseja remover o trecho?',enviaComando('remover', <?= $vet_linha["c02_codigo"] ?>))"><img src="imagens/remover.gif" border="0" alt="remover" /></a>
+    <a href="#" onclick="confirm('Tem certeza que deseja aplicar penalidades no trecho?',enviaComando('penalch', <?= $vet_linha["c02_codigo"] ?>))"><img src="imagens/penalch.gif" border="0" alt="Penalidades CH" /></a>
+    <a href="#" onclick="confirm('Tem certeza que deseja resetar penalidades no trecho?',enviaComando('reset_penalch', <?= $vet_linha["c02_codigo"] ?>))"><img src="imagens/reset_penalch.gif" border="0" alt="Resetar Penalidades CH" /></a>
     
 	</td>
   </tr>
@@ -210,7 +177,7 @@ while ($vet_linha = $obj_res->getLinha("assoc"))
 $ultimo_id = $vet_linha["c02_codigo"];
 }
 ?>
-  <!--tr class="linhas">
+  <tr class="linhas">
   
     <td>&nbsp;</td>
     <td valign="bottom">
@@ -233,7 +200,7 @@ $ultimo_id = $vet_linha["c02_codigo"];
     <td valign="bottom">
     <a href="#" onclick="enviaComando('adicionar', <?= $ultimo_id+1 ?>)"><img src="imagens/inserir.gif" border="0" /></a>
     </td>
-  </tr-->
+  </tr>
 </table>
 <input type="hidden" name="id" />
 <input type="hidden" name="cmd" />

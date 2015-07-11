@@ -44,13 +44,15 @@ return $retorno;
 
 	//echo botao("2", "Modelos");
 
+	if ($_SESSION['logado']==0) echo botao("15", "Prova");
+
 	if ($_SESSION['logado']==0) echo botao("3", "Categorias");
 
 	if ($_SESSION['logado']==0) echo botao("4", "Modalidades");
 
 	if ($_SESSION['logado']==0) echo botao("5", "Trechos");
 
-	if ($_SESSION['logado']==0) echo botao("6", "Atributos dos Trechos");
+	//if ($_SESSION['logado']==0) echo botao("6", "Atributos dos Trechos");
 
 	if ($_SESSION['logado']==0) echo botao("7", "Editar Tripulantes");
 
@@ -68,7 +70,7 @@ return $retorno;
 	
     if ($_SESSION['logado']==0) echo botao("14", "Importar competidores");	
 
-	echo botao2("12", "<input type=\"button\" value=\"Sair\" onclick=\"document.location='../auth.php?sair=1&uri=".$_SERVER['SCRIPT_URI']."?".$_SERVER['QUERY_STRING']."'\" />");
+	echo botao2("12", "<input type=\"button\" value=\"Sair\" onclick=\"document.location='../auth.php?sair=1&uri=".$_SERVER['REQUEST_URI']."'\" />");
 
 	//echo botao("9", "Jornal Eletrônico");
 

@@ -14,7 +14,7 @@ require_once"../".$caminho_prova."util/database/include/config_bd.inc.php";
 require_once"../".$caminho_prova."util/database/class/ControleBDFactory.class.php";
 $obj_controle=ControleBDFactory::getControlador(DB_DRIVER);
 
-if ($_SESSION['logado']>4 || $_SESSION['logado']==null) exit("<script>document.location=\"../auth.php?uri=".$_SERVER['SCRIPT_URI']."?".$_SERVER['QUERY_STRING']."\"</script>");
+if ($_SESSION['logado']>4 || $_SESSION['logado']==null) exit("<script>document.location=\"../auth.php?uri=".$_SERVER['REQUEST_URI']."\"</script>");
 
 //
 $bt=(int)$_REQUEST["bt"];
@@ -61,7 +61,20 @@ $bt=(int)$_REQUEST["bt"];
 		document.comando.cmd.value=cmd;
 		document.comando.submit();
 	}
+	function formatar(src, mask){
+	  var i = src.value.length;
+	  var saida = mask.substring(0,1);
+	  var texto = mask.substring(i);
+	if (texto.substring(0,1) != saida)
+	  {
+		src.value += texto.substring(0,1);
+	  }
+	}
 	</script>
+	
+
+
+
 </head>
 
 <body>
@@ -94,6 +107,7 @@ $bt=(int)$_REQUEST["bt"];
 					case 12: include"import.php"; break;
 					case 13: include"ocorrencia.php"; break;
 					case 14: include"import_comp.php"; break;
+					case 15: include"prova.php"; break;
 				}
 				?>
             </td>
