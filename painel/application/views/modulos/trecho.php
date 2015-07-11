@@ -154,21 +154,17 @@
 			
 			
 			<div class="col-lg-4 campos">
-				<div style="display:block; width: 100%;">
-					<label for="t02_trecho_controle">Trecho a ser penalizado</label>
-				</div>
-				<div style="display:inline-block; width: 30%;">					
-					<select id="t02_trecho_controle" name="t02_trecho_controle" class="form-control">				
-						<?php
-							foreach ($vetor_trechos AS $trecho){ 
-								$valor = $trecho['c02_codigo'];
-								$selected = ($trecho['c02_codigo'] == $vetor_trecho['t02_trecho_controle']) ? " selected" : "";
-								$descricao = $trecho['c02_nome'];
-								echo sprintf('<option value="%s"%s>%s</option>\r\n',$valor,$selected,$descricao);
-							}
-						?>
-					</select>
-				</div>
+				<label for="t02_trecho_controle">Trecho a ser penalizado</label>			
+				<select id="t02_trecho_controle" name="t02_trecho_controle" class="form-control">				
+					<?php
+						foreach ($vetor_trechos AS $trecho){ 
+							$valor = $trecho['c02_codigo'];
+							$selected = ($trecho['c02_codigo'] == $vetor_trecho['t02_trecho_controle']) ? " selected" : "";
+							$descricao = $trecho['c02_nome'];
+							echo sprintf('<option value="%s"%s>%s</option>\r\n',$valor,$selected,$descricao);
+						}
+					?>
+				</select>
 			</div>
 			
 			
