@@ -52,9 +52,9 @@ Numeral ; Tempo ; Observa&ccedil;&atilde;o
 	<input type="submit" value="upload" />
 </div>
 <?php 
-/* if (isset($string)){
+if (isset($string)){
 
 	echo '<div class="alert alert-info" role="alert">'.$string.'</div>';
-} */
+}
 ?>
 </form>

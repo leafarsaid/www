@@ -17,7 +17,7 @@ if ($_REQUEST["db"] == 2) {
 }  elseif ($_REQUEST["db"] == "local"){       
 	$sUserBanco = "root"; 
 	$sBanco = "chronosat1";
-	$sServer = "127.0.0.1";
+	$sServer = "localhost";
 	$sPass = "";
 } 
 else {       

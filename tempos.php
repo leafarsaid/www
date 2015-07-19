@@ -8,7 +8,7 @@ header("Cache-Control: no-cache, must-revalidate",true);
 header("Pragma: no-cache",true);
 
 if ($_SESSION['logado'] > 0 || $_SESSION['logado'] == NULL) 
-	exit("<script> document.location=\"./auth.php?db=".$_REQUEST['db']."&uri=tempos.php?".$_SERVER['QUERY_STRING']."\"</script>");
+	exit("<script> document.location=\"./auth.php?uri=".$_SERVER['SCRIPT_URI']."?".$_SERVER['QUERY_STRING']."\"</script>");
 
 //
 require_once "util/objDB.php";
@@ -205,7 +205,7 @@ function excedentes($obj_controle, $str_sql_E) {
 				<td width="105" align="right">
 					Usuário: <?= $_SESSION['usuario'] ?> (<?= $_SESSION[usuario_sigla] ?>)<br />
 					Nível: <?= $_SESSION['nivel'] ?>
-					<input type="button" value="Sair" onClick="document.location='auth.php?sair=1&db=<?= $_REQUEST['db'] ?>&uri=<?= "tempos.php?".$_SERVER['QUERY_STRING'] ?>'" />
+					<input type="button" value="Sair" onClick="document.location='auth.php?sair=1&uri=<?= $_SERVER['SCRIPT_URI']."?".$_SERVER['QUERY_STRING'] ?>'" />
 				</td>
 			</tr>
 		</table>
