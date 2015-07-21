@@ -33,15 +33,16 @@ $strBaseURL = implode('/', $exp);
 function timetosecc($time){
 	$frag = explode(":",$time);
 	$sec = $frag[0]*3600+$frag[1]*60+$frag[2];
-	if ($frag[3] > 0) $sec .= ".".$frag[3];
+	$sec .= ".".str_pad($frag[3],2,"0",STR_PAD_LEFT);
 	return $sec * 1;
 }
 
 function sectotimee($sec){
+	$sec = $sec."";
 	$frag = explode(".",$sec);
 	$t = $frag[0];
   	$time = sprintf('%02d:%02d:%02d', ($t/3600),($t/60%60), $t%60);
-  	if ($frag[1] > 0) $time .= ".".$frag[1];
+  	$time .= ".". str_pad($frag[1],2,"0",STR_PAD_LEFT);
   	return $time;
 }
 
@@ -159,7 +160,7 @@ foreach ($lista_array as $v) {
 	array_push($lista[$i], '<b>'.substr($tempoo,3,$length_str)."</b>");
 
 	//PENAIS - BONUS
-	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],3,$length_str)."</div>";
+	/*$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],3,$length_str)."</div>";
 	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],3,$length_str)."</div>";
 	array_push($lista[$i], $str_penais_bonus);
 	
@@ -180,7 +181,7 @@ foreach ($lista_array as $v) {
 	//TEMPO TOTAL - DIF. LIDER
 	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($totall,3,$length_str)."</b></div>";
 	$str_tempo_total .='<br>'.substr($difff,3,$length_str);
-	array_push($lista[$i], $str_tempo_total);
+	array_push($lista[$i], $str_tempo_total);*/
 	$i++;
 }
 
@@ -200,8 +201,8 @@ foreach ($arr_especiais as $key => $value) {
 }
 
 array_push($campos_header_ss,'TEMPO');
-array_push($campos_header_ss,'<div style="color:red">Penal</div><div style="color:blue"><br>Bonus</div>');
-array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</div>');
+//array_push($campos_header_ss,'<div style="color:red">Penal</div><div style="color:blue"><br>Bonus</div>');
+//array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</div>');
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
