@@ -139,12 +139,12 @@ foreach ($lista_array as $v) {
 
 	//TEMPOS DE CADA SS
 	if ($numero_trecho == 0) $length_str = 10;
-	else $length_str = 8;
+	else $length_str = 10;
 	foreach ($arr_ss as $x) {
 		if ($x == $v['melhor'] || $x-1 == $v['melhor']){
-			array_push($lista[$i],"<b>".substr($v['ss'.$x],0,$length_str)."</b>");
+			array_push($lista[$i],"<b>".substr($v['ss'.$x],3,$length_str)."</b>");
 		} else{
-			array_push($lista[$i],substr($v['ss'.$x],0,$length_str));
+			array_push($lista[$i],substr($v['ss'.$x],3,$length_str));
 		}
 	}
 	
@@ -156,11 +156,11 @@ foreach ($lista_array as $v) {
 	}
 
 	//TEMPO	BRUTO
-	array_push($lista[$i], '<b>'.substr($tempoo,0,$length_str)."</b>");
+	array_push($lista[$i], '<b>'.substr($tempoo,3,$length_str)."</b>");
 
 	//PENAIS - BONUS
-	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],0,$length_str)."</div>";
-	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],0,$length_str)."</div>";
+	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],3,$length_str)."</div>";
+	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],3,$length_str)."</div>";
 	array_push($lista[$i], $str_penais_bonus);
 	
 	$totall_sec = ($v['melhor_valor'] + timetosecc($v['penalidade']) - timetosecc($v['bonus']));
@@ -178,8 +178,8 @@ foreach ($lista_array as $v) {
 	}
 	
 	//TEMPO TOTAL - DIF. LIDER
-	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($totall,0,$length_str)."</b></div>";
-	$str_tempo_total .='<br>'.substr($difff,0,$length_str);
+	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($totall,3,$length_str)."</b></div>";
+	$str_tempo_total .='<br>'.substr($difff,3,$length_str);
 	array_push($lista[$i], $str_tempo_total);
 	$i++;
 }
