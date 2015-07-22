@@ -58,58 +58,63 @@ for ($i = 0; $i < count($xml); $i++) {
 	
 	//transformando em segundos
 	foreach ($arr_ss as $ss){
-		if (timetosecc($linha_xml["ss".$ss]) > 0){
-			$ss_sec[$ss]['valor'] = timetosecc($linha_xml["ss".$ss]);
-		}	
-	}
-	
-	//agrupando
-	for ($s = 0; $s < count($ss_sec); $s++){
-		if ($s % 2 != 0){
-			$dupla_ss[$s]['valor'] = $ss_sec[$s]['valor'] + $ss_sec[$s+1]['valor'];
-			$dupla_ss[$s]['ss'] = $s;
+		if ($linha_xml["ss".$ss] != "* * *"){
+			$ss_sec[$ss] = timetosecc($linha_xml["ss".$ss]);
+		} else {
+			$ss_sec[$ss] = 999999999999;
 		}
 	}
 	
-		
+//var_dump($ss_sec);	
+	
+	//agrupando
+	for ($s = 0; $s < count($ss_sec); $s++){
+		if ($s % 2 == 0){
+			$dupla_ss[$arr_ss[$s]]['valor'] = $ss_sec[$arr_ss[$s]] + $ss_sec[$arr_ss[$s]+1];
+			$dupla_ss[$arr_ss[$s]]['cod'] = $s;
+		}
+	}
+/*	
+if($dupla_ss[0]['valor']>0){
+echo "<pre>";
+var_dump($dupla_ss);
+echo "</pre>";
+}*/
+	
+	unset($melhor);
+	
 	//encontrando melhor dupla
 	foreach ($dupla_ss as $item){
-		if (!isset($melhor) || $item['valor'] < $melhor['valor']){
+		if (!isset($melhor) || ($item['valor'] < $melhor['valor'] && $item['valor']>0 && $item['valor']<999999999999)){
 			$melhor = $item;
 		}
 	}
 	
-	if (timetosecc($linha_xml["ss".$ss]) > 0){
-		$key_aux = $melhor['valor'];
-	} else{
-		$key_aux = $melhor['valor']+1000000+$i;
-	}	
+	$key_aux = timetosecc($melhor["valor"])*1000;
 	
-	//echo $key_aux." ";
+	//echo $linha_xml["numeral"]."->".$key_aux." ";
 	
 	foreach($linha_xml as $key => $value) {
-		$lista_array[$key_aux][$key] = (string)$value;
+		if($key_aux > 0 && $key_aux < 999999999999){
+			$lista_array[$key_aux][$key] = (string)$value;
+		}
 	}
 
-	$lista_array[$key_aux]["melhor"] = $melhor['ss'];
-	if (timetosecc($linha_xml["ss".$ss]) > 0){
+	if($key_aux > 0 && $key_aux < 999999999999){
+		$lista_array[$key_aux]["melhor_ss"] = $melhor['cod'];
+	
 		$lista_array[$key_aux]["melhor_valor"] = $melhor['valor'];
-	} else{
-		$lista_array[$key_aux]["melhor_valor"] = "* * *";
 	}
 }
 
 ksort($lista_array);
-/* 
-echo "<pre>";
- var_dump($lista_array);
-echo "</pre>";
- */
+
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
 // Tabelão de dados a serem exibidos
 $i = 0;
+$pos = 1;
 $lista = array();
 
 foreach ($lista_array as $v) {
@@ -118,7 +123,7 @@ foreach ($lista_array as $v) {
 
 	//POS
 	$lista[$i] = array();
-	array_push($lista[$i], "<b>".$v['pos']."</b>");
+	array_push($lista[$i], "<b>".$pos."</b>");
 
 	//NO
 	array_push($lista[$i], $v['numeral']);
@@ -142,7 +147,7 @@ foreach ($lista_array as $v) {
 	if ($numero_trecho == 0) $length_str = 10;
 	else $length_str = 10;
 	foreach ($arr_ss as $x) {
-		if ($x == $v['melhor'] || $x-1 == $v['melhor']){
+		if ($x == $v['melhor_ss']+1 || $x == $v['melhor_ss']+2){
 			array_push($lista[$i],"<b>".substr($v['ss'.$x],3,$length_str)."</b>");
 		} else{
 			array_push($lista[$i],substr($v['ss'.$x],3,$length_str));
@@ -150,11 +155,7 @@ foreach ($lista_array as $v) {
 	}
 	
 	
-	if ($v['melhor_valor'] > 0){
-		$tempoo = sectotimee($v['melhor_valor']);
-	} else{
-		$tempoo = ($v['melhor_valor']);
-	}
+	$tempoo = sectotimee($v['melhor_valor']);
 
 	//TEMPO	BRUTO
 	array_push($lista[$i], '<b>'.substr($tempoo,3,$length_str)."</b>");
@@ -183,6 +184,7 @@ foreach ($lista_array as $v) {
 	$str_tempo_total .='<br>'.substr($difff,3,$length_str);
 	array_push($lista[$i], $str_tempo_total);*/
 	$i++;
+	$pos++;
 }
 
 //--------------------------------------------------------------------------
