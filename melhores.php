@@ -61,7 +61,7 @@ for ($i = 0; $i < count($xml); $i++) {
 		if ($linha_xml["ss".$ss] != "* * *"){
 			$ss_sec[$ss] = timetosecc($linha_xml["ss".$ss]);
 		} else {
-			$ss_sec[$ss] = 999999999999;
+			$ss_sec[$ss] = 999999+$i;
 		}
 	}
 	
@@ -70,7 +70,8 @@ for ($i = 0; $i < count($xml); $i++) {
 	//agrupando
 	for ($s = 0; $s < count($ss_sec); $s++){
 		if ($s % 2 == 0){
-			$dupla_ss[$arr_ss[$s]]['valor'] = $ss_sec[$arr_ss[$s]] + $ss_sec[$arr_ss[$s]+1];
+			$dupla_ss[$arr_ss[$s]]['valor'] = $ss_sec[$arr_ss[$s]];
+			$dupla_ss[$arr_ss[$s]]['valor'] += $ss_sec[$arr_ss[$s]+1];
 			$dupla_ss[$arr_ss[$s]]['cod'] = $s;
 		}
 	}
@@ -85,28 +86,33 @@ echo "</pre>";
 	
 	//encontrando melhor dupla
 	foreach ($dupla_ss as $item){
-		if (!isset($melhor) || ($item['valor'] < $melhor['valor'] && $item['valor']>0 && $item['valor']<999999999999)){
+		if (!isset($melhor) || ($item['valor'] < $melhor['valor'] && $item['valor']>0 && $item['valor']<999999)){
 			$melhor = $item;
 		}
 	}
 	
-	$key_aux = timetosecc($melhor["valor"])*1000;
+	$key_aux = ($melhor["valor"])*1000;
 	
 	//echo $linha_xml["numeral"]."->".$key_aux." ";
 	
 	foreach($linha_xml as $key => $value) {
-		if($key_aux > 0 && $key_aux < 999999999999){
+		if($key_aux > 0){
 			$lista_array[$key_aux][$key] = (string)$value;
 		}
 	}
 
-	if($key_aux > 0 && $key_aux < 999999999999){
+	if($key_aux > 0 && $key_aux){
 		$lista_array[$key_aux]["melhor_ss"] = $melhor['cod'];
 	
 		$lista_array[$key_aux]["melhor_valor"] = $melhor['valor'];
 	}
+	
+	$lista_array[$key_aux]["key_aux"] = $key_aux;
+	
+	if($key_aux >= (999999 * count($arr_ss))){
+		$lista_array[$key_aux]["posicao"] = "NC";
+	}
 }
-
 ksort($lista_array);
 
 
@@ -123,6 +129,7 @@ foreach ($lista_array as $v) {
 
 	//POS
 	$lista[$i] = array();
+	$pos = ($v['posicao']=="NC") ? "NC" : $pos;
 	array_push($lista[$i], "<b>".$pos."</b>");
 
 	//NO
@@ -154,11 +161,12 @@ foreach ($lista_array as $v) {
 		}
 	}
 	
-	
-	$tempoo = sectotimee($v['melhor_valor']);
+	//$tempoo = $v['key_aux'] . " | " . sectotimee($v['melhor_valor']);
+	$tempoo = ($v['posicao']=="NC") ? "   *" : sectotimee($v['melhor_valor']);
 
 	//TEMPO	BRUTO
 	array_push($lista[$i], '<b>'.substr($tempoo,3,$length_str)."</b>");
+	//array_push($lista[$i], '<b>'.$tempoo."</b>");
 
 	//PENAIS - BONUS
 	/*$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],3,$length_str)."</div>";
