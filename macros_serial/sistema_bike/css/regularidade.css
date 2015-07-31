@@ -1,0 +1,152 @@
+/**************************************/
+/*       	  Regularidade            */
+/**************************************/
+
+/* ## ELEMENTOS EM GERAL ## */
+* {margin:0px; padding:0px; /*border:1px;*/}
+
+.DetScrollTxt {
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	SCROLLBAR-TRACK-COLOR: #858484;
+	SCROLLBAR-FACE-COLOR: #858484;
+	SCROLLBAR-HIGHLIGHT-COLOR: #858484;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-DARKSHADOW-COLOR: #858484;
+	OVERFLOW: scroll;
+	OVERFLOW-Y: hidden;
+	WIDTH: 600px;
+	HEIGHT: 130px;
+	padding:10px 10px 10px 0px;
+}
+
+td {font-family:verdana;font-size:11px;color:#ffffff;}
+a {color:#ffffff;text-decoration:none;}
+a:hover {color:#000066;text-decoration:underline;}
+.txt09 {font-size:9px;}
+.txt10 {font-size:10px;}
+.txtTermos {color:#a0a0a0;font-size:10px;}
+.txtAutoriza {color:#ccc8a6;}
+.txtLaranja {color:#e7913d;}
+.backTransp {background:transparent;border:0px;}
+.txtFooter {font-size:9px;}
+.ImgNone {text-decoration:none;}
+.ImgNone:hover {text-decoration:none;}
+#BgBodyVel input, select {background-color:#FFFFFF;border:solid 1px;border-bottom-color:#979797;border-top-color:#282828;border-left-color:#282828;border-right-color:#979797;font-size:10px;}
+/* ## CLASSES COM ID'S # ## */
+
+#BgBodyRe {
+/*background-image:url('../img/bgPaternBody02Re.jpg');*/
+background-color: #ffffff;
+/*background-image: url('../img/bgPaternBody02Re.jpg');*/
+background-position: center top;
+background-repeat: no-repeat;
+background-attachment: fixed;
+font-family:verdana;font-size:11px;color:#464646;
+}
+
+/* ## CLASSES DE HTML ## */
+
+
+#BgBodyRe .BorderLeft {background-color:#FFFFFF;}
+#BgBodyRe .BorderRight {background-color:#FFFFFF;}
+#BgBodyRe .BgHeader {background-color:#FFFFFF;/*background-repeat:no-repeat;*/}
+
+#BgBodyRe .Logo {background-image:url('../img/bgLogoReg.gif');height:75px;width:130px;background-repeat:no-repeat;}
+#BgBodyRe .SpcLogo {padding:10px 10px 10px 10px;}
+#BgBodyRe .SpcHeader {padding:10px 0px 10px 10px;}
+#BgBodyRe .BtInscrRe {background-image:url('../img/btInscreverRe.jpg');height:24px;width:77px;background-repeat:no-repeat;}
+
+#BgBodyRe .NoBorder {border:0px;}
+#BgBodyRe .BgMnHeader {background-color:#ffffff;}
+
+#BgBodyRe .BgDestaque {background-image:url('../img/bgDestaque.jpg');height:206px;width:100%;}
+#BgBodyRe .SpcDest01 {padding:12px 6px 12px 12px;}
+#BgBodyRe .SpcDest02 {padding:12px 12px 12px 6px;}
+/* fundo da tabela do texto */
+#BgBodyRe .BgBox {background-color:#FFFFFF;}
+#BgBodyRe .SpcBox01 {padding:12px 5px 12px 10px;}
+#BgBodyRe .SpcBox02 {padding:12px 10px 12px 6px;}
+
+#BgBodyRe .BgTitUltNoticias {background-image:url('../img/tit_ultNoticias.jpg');height:34px;width:401px;}
+#BgBodyRe .BgTitUltNoticias2 {background-image:url('../img/tit_ultNoticias.jpg');height:34px;width:330px;}
+#BgBodyRe .BgTitRankingVelo {background-image:url('../img/tit_rankingVelo.jpg');height:34px;width:331px;}
+/* tit_rankingVelo.jpg */
+
+#BgBodyRe .txtNot {color:#464646;font-size:11px;}
+#BgBodyRe .SpcNoticia {padding:0px 3px 0px 3px;}
+#BgBodyRe .BgFootNot {background-color:#FFFFFF;font-size:12px;}
+
+#BgBodyRe .BgLinhaRanking {background-color:#FFFFFF;height:15px;}
+#BgBodyRe .BgDescPatr {background-color:#FFFFFF;height:30px;}
+
+#BgBodyRe .BgPatro {background-color:#FFFFFF;}
+
+#BgBodyRe .BgTitPatrocinio {background-image:url('../img/tit_patrocinio.jpg');height:36px;width:331px;}
+#BgBodyRe .BgTitLocal {background-image:url('../img/tit_ApoioLocalRe.jpg');height:34px;width:331px;}
+
+#BgBodyRe .resp10Left {padding-left:10px;}
+#BgBodyRe .resp10Right {padding-right:10px;}
+#BgBodyRe .resp4Bot {padding-bottom:4px;}
+#BgBodyRe .resp4Top {padding-top:4px;}
+#BgBodyRe .resp6Bot {padding-bottom:6px;}
+#BgBodyRe .resp6Top {padding-top:6px;}
+#BgBodyRe .resp6Left {padding-left:6px;}
+#BgBodyRe .resp6Right {padding-right:6px;}
+#BgBodyRe .resp10Bot {padding-bottom:10px;}
+#BgBodyRe .resp10Top {padding-top:10px;}
+#BgBodyRe .resp13Top {padding-top:13px;}
+
+#BgBodyRe .bgLinha {background-image:url('../img/bgLinha.gif');width:100%;height:2px;}
+#BgBodyRe .bgLinha02 {background-image:url('../img/bgLinha02.gif');width:3;height:100%;}
+#BgBodyRe .imgPont {background-image:url('../img/imgPont.gif');width:100%;height:1;}
+
+#BgBodyRe .BgTitPatroVel {background-image:url('../img/tit_patrocinio.jpg');height:36px;width:331px;}
+#BgBodyRe .BgTitProEtapa {background-image:url('../img/tit_proEtapa.jpg');height:34px;width:331px;}
+#BgBodyRe .BgTitFotoAnt {background-image:url('../img/tit_fotoAnterior.jpg');height:34px;width:401px;}
+#BgBodyRe .BgTitFotoAnt2 {background-image:url('../img/tit_fotoAnterior2.jpg');height:34px;width:398px;}
+#BgBodyRe .BgTitPatroci {background-image:url('../img/tit_patroReg.gif');height:11px;width:113px;background-repeat:no-repeat;}
+
+#BgBodyRe .BgBnrRally {background-image:url('../img/bnr_rally_velocidade.jpg');height:92px;width:330px;}
+#BgBodyRe .BgBnrRally02 {background-image:url('../img/bnr_rally_regularidade.jpg');height:89px;width:330px;}
+
+#BgBodyRe .BgBnrDest {background-image:url('../img/bnr_destaque.jpg');height:180px;width:398px;}
+
+#BgBodyRe .SetaLeft {background-image:url('../img/ImgLeftPatr.gif');height:21px;width:12px;}
+#BgBodyRe .SetaRight {background-image:url('../img/ImgRightPatr.gif');height:21px;width:12px;}
+
+#BgBodyRe .BgTitRegul {background-image:url('../img/tit_Regulamento.gif');height:34px;width:742px;background-repeat:no-repeat;}
+
+#BgBodyRe .BgPatroRegu {background-color:#FFFFFF;height:70px;width:100%;}
+
+#BgBodyRe .BgTitUltNot {background-image:url('../img/tit_notUltima.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgTitNotAnt {background-image:url('../img/tit_notAnterior.gif');height:34px;width:742px;background-repeat:no-repeat;}
+
+#BgBodyRe .BgTitNotDet {background-image:url('../img/tit_notdet.gif');height:34px;width:742px;background-repeat:no-repeat;}
+
+#BgBodyRe .BgTitIncreva {background-image:url('../img/tit_inscrevaSe.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgFaixaIns {background-color:#FFFFFF;}
+
+#BgBodyRe .BgInputAuto {background-color:#ffffff; border:solid 0px; color:#ffffff; font-weight:bold;font-size:10px; font-color:#1B1E61;}
+#BgBodyRe .BtCadastre {background-image:url('../img/btCadastreVe.jpg');height:24px;width:77px;background-repeat:no-repeat;margin:3px 15px 3px 0px;}
+
+#BgBodyRe .BgTitVideos {background-image:url('../img/tit_videos.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgTitFotos {background-image:url('../img/tit_fotos.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgMnRally {background-image:url('../img/mn_rally_regu.jpg');height:92px;width:330px;background-repeat:no-repeat;}
+#BgBodyRe .BgMnVelo {background-image:url('../img/mn_rally_velo.jpg');height:92px;width:330px;background-repeat:no-repeat;}
+#BgBodyRe .BgLinha3 {background-image:url('../img/bgLinhaHi.gif');height:3px;width:100%;}
+#BgBodyRe .BgTitDown {background-image:url('../img/tit_downloadsRe.gif');height:34px;width:742px;}
+
+#BgBodyRe .BgTitOqueE {background-image:url('../img/tit_oquee.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgTitRanking {background-image:url('../img/tit_ranking.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgTitCalendario {background-image:url('../img/tit_calendario.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .BgLinhaTab {background-color:#FFFFFF;}
+#BgBodyRe .txtEtapas {color:#ccc8a6;}
+#BgBodyRe .titCalendar {font-size:22px;}
+#BgBodyRe .txtBnr {font-size:14px;}
+#BgBodyRe .txtCont {color:#666666;}
+
+#BgBodyRe .bgBoxPat {background-image:url('../img/bgBoxPattRe.jpg');}
+#BgBodyRe .BgTitApoio {background-image:url('../img/tit_apoio.gif');height:11px;width:83px;background-repeat:no-repeat;}
+#BgBodyRe .BgTitCursos {background-image:url('../img/tit_cursos.gif');height:34px;width:742px;background-repeat:no-repeat;}
+#BgBodyRe .DestLink {color:#ffb919;]

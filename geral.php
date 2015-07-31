@@ -121,6 +121,7 @@ array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</d
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="css/relatorio_print.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery.min.js"></script>
 		<title></title>
 	</head>
 
@@ -143,4 +144,17 @@ array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</d
 		</table>
 		<? echo geraFooter($_REQUEST["categoria"], $_REQUEST["modalidade"], $_REQUEST["mod"]); ?>
 	</body>
+	
+<?php if ($_REQUEST['tv']>=1){ ?>
+	<script>
+	function ciclo(){
+		$("html, body").animate({ scrollTop: $(document).height() }, 10000);
+		setTimeout(function() {
+			$("html, body").animate({ scrollTop: 0 }, 1000);
+		},1000);
+	}
+	ciclo();
+	</script>
+<?php } ?>
+
 </html>

@@ -1,5 +1,8 @@
 <?
 
+require_once "util/database/include/config_bd.inc.php";
+require_once "util/database/class/ControleBDFactory.class.php";
+
 /*
 	-----------------------------------------------------------------------------
     funcoes para gerar linhas de relatorios
@@ -19,7 +22,7 @@ function printHeader($txt_pag, $txt_timestamp, $iFIM) {
 	$header .= sprintf("%s\n","   <tr class=\"bg_header\">");
 	
 	$header .= sprintf("%s\n","    <td align=\"left\" valign=\"top\">");
-	$header .= sprintf("%s\n","     <img src=\"imagens/rallyebr.jpg\" width=180 \ border=0 valign=\"center\" align=\"absmiddle\"/>");
+	$header .= sprintf("%s\n","     <img src=\"imagens/sertoes2014.jpg\" border=0 valign=\"center\" align=\"absmiddle\"/>");
 	$header .= sprintf("%s\n","    </td>");
 	
 	$header .= sprintf("%s\n","    <td align=\"left\" valign=\"top\" style=\"font-family: Arial Narrow;\">");
@@ -32,13 +35,14 @@ function printHeader($txt_pag, $txt_timestamp, $iFIM) {
 	$header .= sprintf("%s\n","    </td>");
 	
 	$header .= sprintf("%s\n","    <td align=\"right\" valign=\"top\">");
-	$header .= sprintf("%s\n","     <img src=\"imagens/copa_4x4_se.jpg\" width=180 \border=0 align=\"absmiddle\"/>&nbsp;");
+	//$header .= sprintf("%s\n","     <img src=\"imagens/patr3.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
 	//$header .= sprintf("%s\n","     <img src=\"imagens/patr1.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
 	//$header .= sprintf("%s\n","     <img src=\"imagens/patr2.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	//$header .= sprintf("%s\n","     <img src=\"imagens/balada.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	//$header .= sprintf("%s\n","     <img src=\"imagens/goias.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
 	//$header .= sprintf("%s\n","     <img src=\"imagens/patr6.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$header .= sprintf("%s\n","     <img src=\"imagens/patr7.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
 	//$header .= sprintf("%s\n","     <img src=\"imagens/patr4.jpg\" border=0 align=\"absmiddle\"/>");
-	//$header .= sprintf("%s\n","    </td>");
+	$header .= sprintf("%s\n","    </td>");
 	
 	$header .= sprintf("%s\n","   </tr>");
 	$header .= sprintf("%s\n","  </table>");
@@ -174,12 +178,11 @@ function concat() {
 *
 */
 function criaArray ($sql) {
-	
-	global $obj_controle;
-	
+	global $obj_res;
+	$obj_ctrl = ControleBDFactory::getControlador(DB_DRIVER);
 	$arr_retorno = array();
-				
-	if($obj_res=$obj_controle->executa($sql)) {			
+	
+	if($obj_res=$obj_ctrl->executa($sql)) {			
 		while($arr_comp = $obj_res->getLinha("assoc")){
 			$arr_retorno[count($arr_retorno)] = $arr_comp;
 		}
@@ -301,17 +304,18 @@ function geraFooter($iCat, $iMod, $strMod) {
 	$footer .= sprintf("%s\n","<tr class=\"bg_header\">");
 	
 	$footer .= sprintf("%s\n","<td align=\"left\">");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr3.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr1.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr2.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr6.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr7.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
-	//$footer .= sprintf("%s\n","     <img src=\"imagens/patr4.jpg\" border=0 align=\"absmiddle\"/>");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/patr3.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/patr1.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/patr2.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/balada.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/goias.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/patr6.jpg\" border=0 align=\"absmiddle\"/>&nbsp;");
+	$footer .= sprintf("%s\n","     <img src=\"imagens/patr4.jpg\" border=0 align=\"absmiddle\"/>");
 	
 	$footer .= sprintf("%s\n"," </td><td align=\"right\">");
-	$footer .= (($iCat > 40) || ($iMod > 3) || ($strMod == "C")) ? 
+	$footer .= ($_REQUEST['db']=='1' || $_REQUEST['db']=='local1') ? 
 					sprintf("%s   ","<img src=\"imagens/ass_dunas_cba_chrono.png\" width=300 border=0 align=\"absmiddle\"/>") : 
-					sprintf("%s   ","<img src=\"imagens/ass_fma.png\" width=300 border=0 align=\"absmiddle\"/>");
+					sprintf("%s   ","<img src=\"imagens/ass_dunas_fim_chrono.png\" width=300 border=0 align=\"absmiddle\"/>");
 	$footer .= sprintf("%s\n","</td></tr></table>");
 	return $footer;
 }

@@ -43,6 +43,11 @@
 					font-weight: bold;
 					font-size: 18px;
 			}
+			.style5 {
+					color: #CC9900;
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: 13px;
+			}
 
 			.style6 {color: #CC9900; font-family: Arial, Helvetica, sans-serif; font-weight: bold; font-size: 14px; }
 
@@ -52,10 +57,10 @@
 	</head>
 	<body marginheight="0" marginwidth="0" leftmargin="0" rightmargin="0" topmargin="0" bgcolor="#000000">
 		<br/><p align="center"><img src="imagens/sertoes2014.jpg" /><br></p>
-		<table width="800" border="0" align="center" cellpadding="0" cellspacing="10">
+		<table border="0" align="center" cellpadding="0" cellspacing="10">
 			<tr>
-				<td align="left" valign="bottom" class="style4">22o. RALLY INTERNACIONAL DOS SERT&Otilde;ES 2014</td>
-				<td align="right" valign="bottom" class="style2">23 a 30 de Agosto de 2014</td>
+				<td align="left" valign="bottom" class="style4">23o. RALLY INTERNACIONAL DOS SERT&Otilde;ES 2015</td>
+				<td align="right" valign="bottom" class="style2">01 a 08 de Agosto de 2015</td>
 			</tr>
 
 			<tr bgcolor="#CC9900">
@@ -63,57 +68,92 @@
 			</tr>
 
 			<tr valign="top">
-				<td valign="top">
+				<td valign="top" colspan="2">
 					<table border="1" align="left" cellpadding="5" cellspacing="0">
 						<tr bgcolor="#CC9900">
-							<td colspan="3" align="center"><span class="style0">RESULTADOS ACUMULADOS</span></td>
+							<td colspan="4" align="center"><span class="style0">RESULTADOS EXTRA-OFICIAIS</span></td>
 						</tr>
+						
 						<tr align="center" valign="top">
-							<td align="right" bgcolor="#CC9900"><span class="style0">MODALIDADE</span></td>
+							<td align="right" bgcolor="#CC9900"><span class="style0">CLASSIFICAÇÃO GERAL</span></td>
 							<td>
 								<span class="style4">
-									<a href="resultados/motos/Sertoes2014-motos_oficial.pdf">MOTOS<br></a>
-									<a href="resultados/motos/Sertoes2014-qda_oficial.pdf">QUADRIS<br></a>
-									<a href="resultados/motos/Sertoes2014-utv_oficial.pdf">UTVs</a>
+									CARROS<br /><br />
+								</span>
+								<span class="style5">
+									<a href="geral.php?db=1&categoria=1">DB1 CARROS</a><br />
+									<a href="geral.php?db=1&categoria=2">T1 FIA</a><br />
+									<a href="geral.php?db=1&categoria=3">T2 FIA</a><br />
+									<a href="geral.php?db=1&categoria=4">PROTOTIPOS T1</a><br />
+									<a href="geral.php?db=1&categoria=5">PRO BRASIL</a><br />
+									<a href="geral.php?db=1&categoria=6">SUPER PRODUCTION</a><br />
+									<a href="geral.php?db=1&categoria=7">PRODUCTION T2</a><br />
+									<a href="geral.php?db=1&categoria=8">PRODUCTION T3</a><br />
+									<a href="geral.php?db=1&categoria=9">TR4</a><br />
 								</span>
 							</td>
 							<td>
 								<span class="style4">
-									<a href="resultados/carros/Sertoes2014_resultado_Categorias_carros_Acumulado_Oficial.pdf">CARROS<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_Caminhoes_geral_Oficial.pdf">CAMINHÕES</a>
+									MOTOS e QUADRIS<br /><br />
+								</span>
+								<span class="style5">
+									<a href="geral.php?db=2&categoria=1">DB2 MOTOS/QUADRIS</a><br />
+									<a href="geral.php?db=2&categoria=2">SUPER PRODUCTION</a><br />
+									<a href="geral.php?db=2&categoria=3">PRODUCTION ABERTA</a><br />
+									<a href="geral.php?db=2&categoria=4">MARATHON</a><br />
+									<a href="geral.php?db=2&categoria=5">OVER 45</a><br />
+									<a href="geral.php?db=2&categoria=6">CRF 230</a><br />
+									<a href="geral.php?db=2&categoria=7">QUADRIS</a><br />
+								</span>
+							</td>
+							<td>
+								<span class="style4">
+									UTVs<br /><br />
+								</span>
+								<span class="style5">
+									<a href="geral.php?db=3&categoria=1">BD3 UTV</a><br />
+									<a href="geral.php?db=3&categoria=2">UTV TURBO</a><br />
+									<a href="geral.php?db=3&categoria=3">UTV SUPER PRODUCTION</a><br />
 								</span>
 							</td>
 						</tr>
 						<tr align="center" valign="top">
-							<td align="right" bgcolor="#CC9900"><span class="style0">CATEGORIA</span></td>
+							<td align="right" bgcolor="#CC9900"><span class="style0">TRECHOS</span></td>
 							<td>
-								<span class="style4"><u>FIM</u><br></span>
-								<span class="style6">
-									<a href="resultados/motos/fim/Sertoes2014-motos-fim.pdf">BIKES<br></a>
-									<a href="resultados/motos/fim/Sertoes2014-quads-fim.pdf">QUADS<br><br></a>
-								</span>
-								<span class="style4"><br><u>BRASIILEIRO</u><br></span>
-								<span class="style6">
-									<a href="resultados/motos/cbm/Sertoes2014-motos-CBM-SPR_oficial.pdf">(SPR)Super Production<br></a>
-									<a href="resultados/motos/cbm/Sertoes2014-motos-CBM-PDA_oficial.pdf">(PDA)Production Aberta<br></a>
-									<a href="resultados/motos/cbm/Sertoes2014-motos-CBM-O45_oficial.pdf">(OV4)Over 45<br></a>
-									<a href="resultados/motos/cbm/Sertoes2014-motos-CBM-MAR_oficial.pdf">(MAR)Marathon<br></a>
-									<a href="resultados/motos/cbm/Sertoes2014-quadris-CBM-QDA_oficial.pdf">(QDA)Quadris</a>
+								<span class="style5">
+									<a href="ss.php?db=1&trecho=0">Prólogo</a><br />
+									<a href="ss.php?db=1&trecho=1">SS1</a><br />
+									<a href="ss.php?db=1&trecho=2">SS2</a><br />
+									<a href="ss.php?db=1&trecho=3">SS3</a><br />
+									<a href="ss.php?db=1&trecho=4">SS4</a><br />
+									<a href="ss.php?db=1&trecho=5">SS5</a><br />
+									<a href="ss.php?db=1&trecho=6">SS6</a><br />
+									<a href="ss.php?db=1&trecho=7">SS7</a><br />
 								</span>
 							</td>
 							<td>
-								<span class="style6">
-									<a href="resultados/carros/Sertoes2014_resultado_FIAT1_Acumulado_Oficial.pdf">T1-FIA<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_PT1_Acumulado_Oficial.pdf">(PT1)Protótipos-T1<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_PBR_Acumulado_Oficial.pdf">(PBR)Pró-Brasil<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_SPR_Acumulado_Oficial.pdf">(SPR)Super Production<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_PT2_Acumulado_Oficial.pdf">(PT2)Production-T2<br></a>
-									<a href="resultados/carros/Sertoes2014_resultado_PT2_TR4_Acumulado_Oficial.pdf">(TR4)Production-T2/TR4</a>
+								<span class="style5">
+									<a href="ss.php?db=2&trecho=0">Prólogo</a><br />
+									<a href="ss.php?db=2&trecho=1">SS1</a><br />
+									<a href="ss.php?db=2&trecho=2">SS2</a><br />
+									<a href="ss.php?db=2&trecho=3">SS3</a><br />
+									<a href="ss.php?db=2&trecho=4">SS4</a><br />
+									<a href="ss.php?db=2&trecho=5">SS5</a><br />
+									<a href="ss.php?db=2&trecho=6">SS6</a><br />
+									<a href="ss.php?db=2&trecho=7">SS7</a><br />
 								</span>
 							</td>
-						</tr>
-						<tr align="center" valign="top">
-							
+							<td>
+								<span class="style5">
+									<a href="ss.php?db=3&trecho=0">Prólogo</a><br />
+									<a href="ss.php?db=3&trecho=1">SS1</a><br />
+									<a href="ss.php?db=3&trecho=2">SS2</a><br />
+									<a href="ss.php?db=3&trecho=3">SS3</a><br />
+									<a href="ss.php?db=3&trecho=4">SS4</a><br />
+									<a href="ss.php?db=3&trecho=5">SS5</a><br />
+									<a href="ss.php?db=3&trecho=6">SS6</a><br />
+									<a href="ss.php?db=3&trecho=7">SS7</a><br />
+								</span>
 							</td>
 						</tr>
 					</table>
