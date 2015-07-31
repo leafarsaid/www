@@ -224,7 +224,6 @@ array_push($campos_header_ss,'TEMPO');
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta http-equiv="refresh" content="5">
 		<link href="css/relatorio_print.css" rel="stylesheet" type="text/css" />
 		
 		<title></title>

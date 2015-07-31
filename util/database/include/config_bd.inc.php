@@ -14,9 +14,19 @@ if ($_REQUEST["db"] == 2) {
 	$sBanco = "chronosat3";
 	$sServer = "mysql04.chronosat.com.br";
 	$sPass = "chrono2002";
-}  elseif ($_REQUEST["db"] == "local"){       
+}  elseif ($_REQUEST["db"] == "local1"){       
 	$sUserBanco = "root"; 
 	$sBanco = "chronosat1";
+	$sServer = "localhost";
+	$sPass = "";
+}  elseif ($_REQUEST["db"] == "local2"){       
+	$sUserBanco = "root"; 
+	$sBanco = "chronosat2";
+	$sServer = "localhost";
+	$sPass = "";
+}  elseif ($_REQUEST["db"] == "local3"){       
+	$sUserBanco = "root"; 
+	$sBanco = "chronosat3";
 	$sServer = "localhost";
 	$sPass = "";
 } 
