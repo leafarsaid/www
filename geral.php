@@ -150,7 +150,7 @@ array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</d
 	
 <?php if ($_REQUEST['tv']>=1){ ?>
 	<script>
-		$("html, body").scrollTop(0);
+		$("html, body").scrollTop(150);
 		$("html, body").animate({ scrollTop: $(document).height() }, <?php echo $_REQUEST['tv']; ?>000);
 	</script>
 <?php } ?>
