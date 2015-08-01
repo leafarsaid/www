@@ -17,13 +17,8 @@ ini_set("memory_limit", "10000M");
 require_once"util/objDB.php";
 require_once "util/gerador_linhas.php";
 require_once "util/sql.php";
-require_once "util/especiais.php";
 
-// obtendo parametros da querystring
-$int_id_ss=(int)$_REQUEST["trecho"];
-$int_id_cat= ($_REQUEST["subcategoria"]) ? (int)$_REQUEST["subcategoria"] : (int)$_REQUEST["categoria"];
-if (isset($trecho_final)) $numero_trecho = $trecho_final;
-else if ($int_id_ss>=0) $numero_trecho = $int_id_ss;
+$veiculo = $_REQUEST['veiculo'];
 
 $strBaseURL = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $exp = explode('/', $strBaseURL);
@@ -31,63 +26,50 @@ array_pop($exp);
 $strBaseURL = implode('/', $exp);
 
 //--------------------------------------------------------------------------
-//--------------------------------------------------------------------------
-// populando a lista de valores
-$xml_src = $strBaseURL."/geralXML.php?".$_SERVER['QUERY_STRING'];
-$xml = simplexml_load_file($xml_src);
-$lista_array = array();
-for ($i = 0; $i < count($xml); $i++) {
-	foreach($xml->veiculo[$i]->attributes() as $key => $value) {
-		$lista_array[$i][$key] = (string)$value;
-	}
-}
+foreach ($arr_ss AS $x) $lista_array[$x] = criaArray(setor($veiculo, $x));
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
-// TabelÃ£o de dados a serem exibidos
+// Tabela de dados a serem exibidos
 $i = 0;
 $lista = array();
 foreach ($lista_array as $v) {
 
-	//POS
+	//SETOR
 	$lista[$i] = array();
-	array_push($lista[$i], "<b>".$v['pos']."</b>");
+	array_push($lista[$i],substr($v['setor'],0,$length_str));
 
-	//NO
-	array_push($lista[$i], $v['numeral']);
+	//TEMPO Saída cidade
+	array_push($lista[$i],substr($v['ch1'],0,$length_str));
 
-	//TRIPULACAO
-	$tripulacao = '<div class="trip" id="div"><b>'.nomeComp($v['tripulacao']).'</b><br>';
-	if (strlen($v['modelo']) > 0) $tripulacao .= $v['modelo']."<br>";
-	$tripulacao .= '</div>';
-	array_push($lista[$i], $tripulacao);
+	//Penalização controle saída cidade
+	array_push($lista[$i],substr($v['penalidade_ch1'],0,$length_str));	
 
-	//LICENCA FIM
-	if (isset($_REQUEST["fim"])) array_push($lista[$i], $v['licenca']);
+	//largada
+	array_push($lista[$i],substr($v['largada'],0,$length_str));	
 
-	//EQUIPE
-	array_push($lista[$i], '<div class="trip" id="div">'.nomeComp($v['equipe']).'</div>');
+	//chegada
+	array_push($lista[$i],substr($v['chegada'],0,$length_str));	
 
-	//POS(CAT)
-	if (!isset($_REQUEST["categoria"])) array_push($lista[$i], $v['categoria']);
+	//tempo
+	array_push($lista[$i],substr($v['tempo'],0,$length_str));	
 
-	//TEMPOS DE CADA SS
-	if ($numero_trecho == 0) $length_str = 10;
-	else $length_str = 8;
-	foreach ($arr_ss as $x) array_push($lista[$i],substr($v['ss'.$x],0,$length_str));
+	//TEMPO Entrada cidade
+	array_push($lista[$i],substr($v['ch2'],0,$length_str));
 
-	//TEMPO	BRUTO
-	array_push($lista[$i], '<b>'.substr($v['tempo'],0,$length_str)."</b>");
+	//Penalização controle entrada cidade
+	array_push($lista[$i],substr($v['penalidade_ch2'],0,$length_str));	
 
-	//PENAIS - BONUS
-	$str_penais_bonus = '<div style="color:red">'.substr($v['penalidade'],0,$length_str)."</div>";
-	$str_penais_bonus .= '<div style="color:blue"><br>'.substr($v['bonus'],0,$length_str)."</div>";
-	array_push($lista[$i], $str_penais_bonus);
+	//Penalização especial
+	array_push($lista[$i],substr($v['penalidade'],0,$length_str));	
 
-	//TEMPO TOTAL - DIF. LIDER
-	$str_tempo_total = '<div style="font-size:14px"><b>'.substr($v['total'],0,$length_str)."</b></div>";
-	$str_tempo_total .='<br>'.substr($v['diferenca_lider'],0,$length_str);
-	array_push($lista[$i], $str_tempo_total);
+	//Penalização total
+	array_push($lista[$i],substr($v['penalidade_total'],0,$length_str));	
+
+	//tempo total
+	array_push($lista[$i],substr($v['tempoTotal'],0,$length_str));	
+	
+	
 	$i++;
 }
 
@@ -95,20 +77,17 @@ foreach ($lista_array as $v) {
 //--------------------------------------------------------------------------
 // campos do cabecalho da tabela
 $campos_header_ss = array();
-array_push($campos_header_ss,"POS");
-array_push($campos_header_ss,"NO");
-array_push($campos_header_ss,'<div class="trip" id="div">PILOTO/NAVEGADOR</div>');
-if (isset($_REQUEST["fim"])) array_push($campos_header_ss,"FIM No.");
-array_push($campos_header_ss,'<div class="trip" id="div">EQUIPE</div>');
-if (!isset($_REQUEST["categoria"])) array_push($campos_header_ss,"(POS)CAT");
-
-foreach ($arr_especiais as $key => $value) {
-	array_push($campos_header_ss, $value);
-}
-
-array_push($campos_header_ss,'TEMPO');
-array_push($campos_header_ss,'<div style="color:red">Penal</div><div style="color:blue"><br>Bonus</div>');
-array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</div>');
+array_push($campos_header_ss,"Setor");
+array_push($campos_header_ss,"CH saída");
+array_push($campos_header_ss,"Penal. saída");
+array_push($campos_header_ss,"Largada");
+array_push($campos_header_ss,"Chegada");
+array_push($campos_header_ss,"Tempo");
+array_push($campos_header_ss,"CH entrada");
+array_push($campos_header_ss,"Penal. entrada");
+array_push($campos_header_ss,"Penalidade SS");
+array_push($campos_header_ss,"Penalidade total");
+array_push($campos_header_ss,"Tempo Total");
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------

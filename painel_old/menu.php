@@ -52,7 +52,7 @@ return $retorno;
 
 	if ($_SESSION['logado']==0) echo botao("5", "Trechos");
 
-	//if ($_SESSION['logado']==0) echo botao("6", "Atributos dos Trechos");
+	if ($_SESSION['logado']==0) echo botao("6", "Atributos dos Trechos");
 
 	if ($_SESSION['logado']==0) echo botao("7", "Editar Tripulantes");
 

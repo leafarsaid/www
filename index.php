@@ -78,7 +78,7 @@
 							<td align="right" bgcolor="#CC9900"><span class="style0">CLASSIFICAÇÃO GERAL</span></td>
 							<td>
 								<span class="style4">
-									CARROS<br /><br />
+									<a href="geral.php?db=1">CARROS</a><br /><br />
 								</span>
 								<span class="style5">
 									<a href="geral.php?db=1&categoria=2">T1 FIA</a><br />
@@ -93,7 +93,7 @@
 							</td>
 							<td>
 								<span class="style4">
-									MOTOS e QUADRIS<br /><br />
+									<a href="geral.php?db=2">MOTOS e QUADRIS</a><br /><br />
 								</span>
 								<span class="style5">
 									<a href="geral.php?db=2&categoria=2">SUPER PRODUCTION</a><br />
@@ -106,7 +106,7 @@
 							</td>
 							<td>
 								<span class="style4">
-									UTVs<br /><br />
+									<a href="geral.php?db=3">UTVs</a><br /><br />
 								</span>
 								<span class="style5">
 									<a href="geral.php?db=3&categoria=2">UTV TURBO</a><br />

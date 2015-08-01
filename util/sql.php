@@ -278,4 +278,47 @@ function geraSqlAbandonos() {
 	return $ab_sql;
 }
 
+
+function setor($comp, $setor){
+	
+$sql = "
+SELECT
+-- Numeral -----------------------------------------------------------------
+	c03_codigo
+-- Nome --------------------------------------------------------------------
+	,getTripulanteNome(c03_piloto) AS tripulacao
+-- SETOR -------------------------------------------------------------------
+	,".($setor)." AS setor
+-- TEMPO Saída cidade ------------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor).",8)-getTempo(c03_codigo,".($setor+50).",1)) AS ch1
+-- Penalização controle saída cidade ---------------------------------------
+	, '' AS penalidade_ch1
+-- largada -----------------------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor).",1)) AS largada
+-- intermediaria 1 ---------------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor).",3)) AS inter1
+-- intermediaria 2 ---------------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor).",4)) AS inter2
+-- chegada -----------------------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor).",6)) AS chegada
+-- tempo -------------------------------------------------------------------
+	,castTempo(calcTempoSemPena(c03_codigo,".($setor).",c10_codigo,6)) AS tempo
+-- TEMPO Entrada cidade ----------------------------------------------------
+	,castTempo(getTempo(c03_codigo,".($setor+60).",8)-getTempo(c03_codigo,".($setor+60).",6)) AS ch2
+-- Penalização controle entrada cidade -------------------------------------
+	, '' AS penalidade_ch2
+-- Penalização especial ----------------------------------------------------
+	,castTempo(calcPenalidade(c03_codigo,".($setor).", c10_codigo)) AS penalidade
+-- Penalização total -------------------------------------------------------
+	, '' AS penalidade_total
+-- tempo total -------------------------------------------------------------
+	,castTempo(calcTempo(c03_codigo,".($setor).",c10_codigo,6)) AS tempoTotal
+FROM 
+	t03_veiculo
+WHERE
+	c03_codigo = $comp";
+
+return $sql;
+	
+}
 ?>

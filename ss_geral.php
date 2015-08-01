@@ -23,7 +23,7 @@ require_once"util/geraDados.php";
 $int_id_ss=(int)$_REQUEST["trecho"];
 $int_id_cat = ($_REQUEST["subcategoria"]) ? (int)$_REQUEST["subcategoria"] : (int)$_REQUEST["categoria"];
 if (isset($trecho_final)) $numero_trecho = $trecho_final;
-else if ($int_id_ss) $numero_trecho = $int_id_ss;
+else if ($int_id_ss >= 0) $numero_trecho = $int_id_ss;
 
 $strBaseURL = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 $exp = explode('/', $strBaseURL);

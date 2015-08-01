@@ -325,11 +325,13 @@ function geraFooter($iCat, $iMod, $strMod) {
 *
 */
 function geraTxtPag($sPag, $sTrechos, $iTrecho) {
+	$titulo = $_REQUEST['titulo'];
 	$tre = criaArray ("SELECT * FROM t02_trecho WHERE c02_codigo=".$iTrecho);
 	$dist_esp_tot = $tre[0]["c02_distancia"] + $tre[0]["c02_desl_ini"] + $tre[0]["c02_desl_fin"];
 
 	$txt_Pag = ($sPag == "geral") ? (($sTrechos) ? "RESULTADOS ACUMULADOS ": "ACUMULADO AT&Eacute; ") : "";
 	$txt_Pag .= $tre[0]["c02_nome"].": ".$tre[0]["c02_origem"]." - ".$tre[0]["c02_destino"]." (".$dist_esp_tot."km)";
+	if (strlen($titulo) > 0) $txt_Pag .= "<br />".$titulo;
 	
 	return $txt_Pag;
 }
