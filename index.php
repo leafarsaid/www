@@ -81,7 +81,6 @@
 									CARROS<br /><br />
 								</span>
 								<span class="style5">
-									<a href="geral.php?db=1&categoria=1">DB1 CARROS</a><br />
 									<a href="geral.php?db=1&categoria=2">T1 FIA</a><br />
 									<a href="geral.php?db=1&categoria=3">T2 FIA</a><br />
 									<a href="geral.php?db=1&categoria=4">PROTOTIPOS T1</a><br />
@@ -97,7 +96,6 @@
 									MOTOS e QUADRIS<br /><br />
 								</span>
 								<span class="style5">
-									<a href="geral.php?db=2&categoria=1">DB2 MOTOS/QUADRIS</a><br />
 									<a href="geral.php?db=2&categoria=2">SUPER PRODUCTION</a><br />
 									<a href="geral.php?db=2&categoria=3">PRODUCTION ABERTA</a><br />
 									<a href="geral.php?db=2&categoria=4">MARATHON</a><br />
@@ -111,7 +109,6 @@
 									UTVs<br /><br />
 								</span>
 								<span class="style5">
-									<a href="geral.php?db=3&categoria=1">BD3 UTV</a><br />
 									<a href="geral.php?db=3&categoria=2">UTV TURBO</a><br />
 									<a href="geral.php?db=3&categoria=3">UTV SUPER PRODUCTION</a><br />
 								</span>

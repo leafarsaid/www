@@ -120,6 +120,9 @@ array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</d
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<?php if ($_REQUEST['tv']>=1){ ?>
+			<meta http-equiv="refresh" content="<?php echo $_REQUEST['tv']; ?>">
+		<?php } ?>
 		<link href="css/relatorio_print.css" rel="stylesheet" type="text/css" />
 		<script src="js/jquery.min.js"></script>
 		<title></title>
@@ -147,13 +150,8 @@ array_push($campos_header_ss,'TOTAL<div style="font-size:10px"><br>Dif. Lider</d
 	
 <?php if ($_REQUEST['tv']>=1){ ?>
 	<script>
-	function ciclo(){
-		$("html, body").animate({ scrollTop: $(document).height() }, 10000);
-		setTimeout(function() {
-			$("html, body").animate({ scrollTop: 0 }, 1000);
-		},1000);
-	}
-	ciclo();
+		$("html, body").scrollTop(0);
+		$("html, body").animate({ scrollTop: $(document).height() }, <?php echo $_REQUEST['tv']; ?>000);
 	</script>
 <?php } ?>
 
