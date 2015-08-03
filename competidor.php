@@ -17,6 +17,7 @@ ini_set("memory_limit", "10000M");
 require_once"util/objDB.php";
 require_once "util/gerador_linhas.php";
 require_once "util/sql.php";
+require_once "util/especiais.php";
 
 $veiculo = $_REQUEST['veiculo'];
 
@@ -25,8 +26,15 @@ $exp = explode('/', $strBaseURL);
 array_pop($exp);
 $strBaseURL = implode('/', $exp);
 
+
 //--------------------------------------------------------------------------
-foreach ($arr_ss AS $x) $lista_array[$x] = criaArray(setor($veiculo, $x));
+foreach ($arr_ss AS $x) {
+	$lista_array[$x] = criaArray(setor($veiculo, $x));
+}
+
+echo "<pre>";
+var_dump(criaArray(setor($veiculo, 0)));
+echo "</pre>";
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
@@ -99,23 +107,9 @@ array_push($campos_header_ss,"Tempo Total");
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<?php if ($_REQUEST['tv']>=1){ ?>
-			<meta http-equiv="refresh" content="<?php echo $_REQUEST['tv']; ?>">
-		<?php } ?>
 		<link href="css/relatorio_print.css" rel="stylesheet" type="text/css" />
 		<script src="js/jquery.min.js"></script>
-		<?php if ($_REQUEST['tv']>=1){ ?>
-			<script>
-			$(document).ready(function(){
-				$("html, body").scrollTop(150);
-				setTimeout(function () {
-					$("html, body").scrollTop(150);
-					$("html, body").animate({ scrollTop: $(document).height() }, <?php echo $_REQUEST['tv']; ?>000);
-				}, 5000);
-			});
-			</script>
-		<?php } ?>
-				<title></title>
+		<title></title>
 	</head>
 
 	<body marginheight="0" marginwidth="0" leftmargin="0" topmargin="0" bgcolor="#000000">

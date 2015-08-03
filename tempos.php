@@ -197,7 +197,7 @@ function excedentes($obj_controle, $str_sql_E) {
 						<!--option value="P">Penalização</option-->
 						<option value="CH">CH</option>
 						<option value="R">Reação</option>
-						<!--option value="A">Bônus</option-->
+						<option value="A">Bônus</option>
 					</select>
 					<input type="button" id="inserir_tempo" value="Inserir">
 				</td>

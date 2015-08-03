@@ -119,7 +119,7 @@
 							<td>
 								<span class="style5">
 									<a href="ss.php?db=1&trecho=0">Prólogo</a><br />
-									<a href="ss.php?db=1&trecho=1">SS1</a><br />
+									<a href="Sertoes2015_Carros_ET1_Geral_Com_penais.pdf">SS1</a><br />
 									<a href="ss.php?db=1&trecho=2">SS2</a><br />
 									<a href="ss.php?db=1&trecho=3">SS3</a><br />
 									<a href="ss.php?db=1&trecho=4">SS4</a><br />
@@ -130,8 +130,8 @@
 							</td>
 							<td>
 								<span class="style5">
-									<a href="ss.php?db=2&trecho=0">Prólogo</a><br />
-									<a href="ss.php?db=2&trecho=1">SS1</a><br />
+									<a href="Sertoes2015_Motos_Prologo_Geral_Extra.pdf">Prólogo Motos</a> - <a href="Sertoes2015_Quadris_Prologo_Geral_Extra.pdf">Prólogo Quadris</a><br />
+									<a href="Sertoes2015_Motos_Quadris_1_Geral_Extra.pdf">SS1</a><br />
 									<a href="ss.php?db=2&trecho=2">SS2</a><br />
 									<a href="ss.php?db=2&trecho=3">SS3</a><br />
 									<a href="ss.php?db=2&trecho=4">SS4</a><br />
@@ -142,14 +142,32 @@
 							</td>
 							<td>
 								<span class="style5">
-									<a href="ss.php?db=3&trecho=0">Prólogo</a><br />
-									<a href="ss.php?db=3&trecho=1">SS1</a><br />
+									<a href="Sertoes2015_UTVs_Prologo_Geral_Extra.pdf">Prólogo</a><br />
+									<a href="Sertoes2015_UTVs_1_Geral_Extra.pdf">SS1</a><br />
 									<a href="ss.php?db=3&trecho=2">SS2</a><br />
 									<a href="ss.php?db=3&trecho=3">SS3</a><br />
 									<a href="ss.php?db=3&trecho=4">SS4</a><br />
 									<a href="ss.php?db=3&trecho=5">SS5</a><br />
 									<a href="ss.php?db=3&trecho=6">SS6</a><br />
 									<a href="ss.php?db=3&trecho=7">SS7</a><br />
+								</span>
+							</td>
+						</tr>
+						<tr align="center" valign="top">
+							<td align="right" bgcolor="#CC9900"><span class="style0">ORDENS DE LARGADA</span></td>
+							<td>
+								<span class="style5">
+									<a href="Sertoes2015-Ordem_de_Largada_SS_Dia02_carros_v5.pdf">SS2</a><br />
+								</span>
+							</td>
+							<td>
+								<span class="style5">
+									<a href="sertoes2015_motos_largada_et2.pdf">SS2</a><br />
+								</span>
+							</td>
+							<td>
+								<span class="style5">
+									<a href="sertoes2015_motos_largada_et2.pdf">SS2</a><br />
 								</span>
 							</td>
 						</tr>

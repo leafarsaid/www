@@ -28,28 +28,27 @@ function geraSqlGeral2($arr_ss, $int_id_cat, $int_id_mod, $mod, $campeonato) {
 		$str_sql .= "castTempo(calcTempoSemPena(c03_codigo,$arr_ss[$f],c10_codigo,6)) AS ss$arr_ss[$f], ";
 	}
 	
-	//sertoes 2015 nao contou prologo no geral pra ninguem
 	//tempo bruto AS _tempo
 	$str_sql .= "castTempo(0";
-	for ($f = 1; $f < count($arr_ss); $f++)
+	for ($f = 0; $f < count($arr_ss); $f++)
 		$str_sql .= "+calcTempoSemPena(c03_codigo,$arr_ss[$f],c10_codigo,6)";
 	$str_sql .= ") AS tempo, ";
 		
 	//penais AS _penais
 	$str_sql .= "castTempo(0";
-	for ($f = 1; $f < count($arr_ss); $f++)
+	for ($f = 0; $f < count($arr_ss); $f++)
 		$str_sql .= "+calcPenalidade(c03_codigo,$arr_ss[$f],c10_codigo)";
 	$str_sql .= ") AS penais, ";
 	
 	//bonus AS _bonus
 	$str_sql .= "castTempo(0";
-	for ($f = 1; $f < count($arr_ss); $f++)
+	for ($f = 0; $f < count($arr_ss); $f++)
 		$str_sql .= "+IFNULL(getTempo(c03_codigo,$arr_ss[$f],10),0)";
 	$str_sql .= ") AS bonus, ";
 	
 	//tempo total = tempo bruto - penais + bonus AS _tempoTotal
 	$str_sql .= "0";
-	for ($f = 1; $f < count($arr_ss); $f++) {
+	for ($f = 0; $f < count($arr_ss); $f++) {
 		$str_sql .= "+IFNULL(calcTempo(c03_codigo,$arr_ss[$f],c10_codigo,6),999999)";
 	}
 	$str_sql .= " AS tempoTotal, ";
